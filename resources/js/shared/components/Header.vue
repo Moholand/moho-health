@@ -19,15 +19,38 @@
               <router-link :to="{ name: 'about'}" class="nav-link">درباره ما</router-link>
             </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+          <ul class="navbar-nav ms-4"> 
+            <li class="nav-item">
+              <router-link :to="{name: 'login'}">
+                ورود
+              </router-link>
+            </li>
+            <li class="nav-item me-3">
+              <router-link :to="{name: 'register'}">
+                نام‌نویسی
+              </router-link>
+            </li>
+            <li class="nav-item me-3">
+              <button @click.prevent="logout">خروج</button>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
   </div>
 </template>
 
-<style>
-</style>
+<script>
+export default {
+  methods: {
+    logout() {
+      axios.post('api/logout')
+        .then(response => {
+          localStorage.removeItem('token');
+          this.$router.push({ name: 'login' });
+        })
+        .catch(error => console.log(error));
+    }
+  }
+}
+</script>
