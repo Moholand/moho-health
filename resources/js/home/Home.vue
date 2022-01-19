@@ -20,7 +20,10 @@ export default {
 
     // Get current user information
     axios.get('api/user')
-      .then(response => this.currentUser = response.data)
+      .then(response => {
+        this.currentUser = response.data;
+        this.$store.commit('setCurrentUser', response.data);
+      })
       .catch(error => console.log(error));
   },
 }

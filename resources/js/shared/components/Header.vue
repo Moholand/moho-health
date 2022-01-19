@@ -19,21 +19,33 @@
               <router-link :to="{ name: 'about'}" class="nav-link">درباره ما</router-link>
             </li>
           </ul>
-          <ul class="navbar-nav ms-4"> 
-            <li class="nav-item">
-              <router-link :to="{name: 'login'}">
-                ورود
-              </router-link>
-            </li>
-            <li class="nav-item me-3">
-              <router-link :to="{name: 'register'}">
-                نام‌نویسی
-              </router-link>
-            </li>
-            <li class="nav-item me-3">
-              <button @click.prevent="logout">خروج</button>
-            </li>
+
+          <ul class="navbar-nav ms-4">
+
+            <div v-if="$store.state.currentUser" class="d-flex">
+              <li class="nav-item me-3">
+                {{ $store.state.currentUser.name }}
+              </li>
+              <li class="nav-item me-3">
+                <button @click.prevent="logout">خروج</button>
+              </li>
+            </div>
+
+            <div v-else class="d-flex">
+              <li class="nav-item">
+                <router-link :to="{name: 'login'}">
+                  ورود
+                </router-link>
+              </li>
+              <li class="nav-item me-3">
+                <router-link :to="{name: 'register'}">
+                  نام‌نویسی
+                </router-link>
+              </li>
+            </div> 
+
           </ul>
+
         </div>
       </div>
     </nav>
@@ -47,6 +59,7 @@ export default {
       axios.post('api/logout')
         .then(response => {
           localStorage.removeItem('token');
+          this.$store.commit('setCurrentUser', null);
           this.$router.push({ name: 'login' });
         })
         .catch(error => console.log(error));

@@ -1,6 +1,7 @@
 require('./bootstrap');
 
 import Vue from 'vue';
+import Vuex from 'vuex'
 import VueRouter from 'vue-router';
 import router from './routes';
 import Index from './Index';
@@ -10,9 +11,21 @@ import Loading from './shared/components/Loading';
 window.Vue = require('vue').default;
 
 Vue.use(VueRouter);
+Vue.use(Vuex)
 
 Vue.component('alert', Alert);
 Vue.component('loading', Loading);
+
+const store = new Vuex.Store({
+  state: {
+    currentUser: null
+  },
+  mutations: {
+    setCurrentUser(state, payload) {
+      state.currentUser = payload;
+    }
+  }
+})
 
 function loggedIn() {
 	return localStorage.getItem('token');
@@ -47,6 +60,7 @@ router.beforeEach((to, from, next) => {
 const app = new Vue({
 	el: '#app',
 	router,
+  store,
 	components: {
 		'index': Index,
 	}

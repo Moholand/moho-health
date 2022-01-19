@@ -3,7 +3,7 @@
 
     <Header />
 
-    <div class="content py-5">
+    <div class="content py-4">
       <router-view></router-view>
     </div>
 
@@ -23,6 +23,6 @@ export default {
 
 <style scoped>
   .content {
-    min-height: 500px;
+    min-height: 700px;
   }
 </style>

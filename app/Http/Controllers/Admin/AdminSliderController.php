@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\File;
 use App\Http\Resources\HomeSliderResource;
 use App\Http\Requests\AdminCreateSliderRequest;
 
-class SliderController extends Controller
+class AdminSliderController extends Controller
 {
     public function index()
     {
