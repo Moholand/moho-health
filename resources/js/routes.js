@@ -2,6 +2,7 @@ import VueRouter from 'vue-router';
 import Home from './home/Home';
 import About from './about/About';
 import AdminSliders from './admin/sliders/AdminSliders';
+import AdminDepartments from './admin/departments/AdminDepartments';
 import Register from './auth/Register';
 import Login from './auth/Login';
 
@@ -32,6 +33,12 @@ const routes = [
     path: "/admin/sliders",
     name: 'admin-sliders',
     component: AdminSliders,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: "/admin/departments",
+    name: 'admin-departments',
+    component: AdminDepartments,
     meta: { requiresAuth: true }
   },
 ];

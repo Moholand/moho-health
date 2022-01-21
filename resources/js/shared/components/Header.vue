@@ -24,10 +24,22 @@
 
             <div v-if="$store.state.currentUser" class="d-flex">
               <li class="nav-item me-3">
-                {{ $store.state.currentUser.name }}
+                <div class="dropdown">
+                  <button class="bg-transparent border-0 dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown">
+                    {{ $store.state.currentUser.name }}
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="userMenu">
+                    <li><router-link class="dropdown-item text-end" :to="{name: 'admin-sliders'}">
+                      تنظیمات پیمایشگر
+                    </router-link></li>
+                    <li><router-link class="dropdown-item text-end" :to="{name: 'admin-departments'}">
+                      تنظیمات دپارتمان‌ها
+                    </router-link></li>
+                  </ul>
+                </div>
               </li>
               <li class="nav-item me-3">
-                <button @click.prevent="logout">خروج</button>
+                <button class="bg-transparent border-0" @click.prevent="logout">خروج</button>
               </li>
             </div>
 
