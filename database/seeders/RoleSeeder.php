@@ -14,10 +14,10 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $roleNames = [
-            'کاربر عادی', 
+        $roleNames = [ 
             'مدیر سایت', 
-            'پزشک'
+            'پزشک',
+            'کاربر عادی'
         ];
 
         foreach($roleNames as $key => $roleName) {
