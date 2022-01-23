@@ -30818,7 +30818,7 @@ var render = function () {
                       },
                     },
                   },
-                  [_c("i", { staticClass: "fas fa-edit fa-lg text-info" })]
+                  [_c("i", { staticClass: "fas fa-edit fa-lg text-primary" })]
                 ),
                 _vm._v(" "),
                 _c(

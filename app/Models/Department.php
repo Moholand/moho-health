@@ -11,6 +11,11 @@ class Department extends Model
 
     protected $fillable = ['name'];
 
+    public function getUpdatedAtAttribute($value)
+    {
+        return Verta($value)->format('H:i Y-n-j');
+    }
+
     // public function doctors() {
     //     return $this->hasMany(Doctor::class);
     // }

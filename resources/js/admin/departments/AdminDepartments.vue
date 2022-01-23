@@ -48,7 +48,7 @@
               class="bg-transparent border-0" 
               @click="showingModalUpdate(slider.id, slider.name, slider.image)"
             >
-              <i class="fas fa-edit fa-lg text-info"></i>
+              <i class="fas fa-edit fa-lg text-primary"></i>
             </button>
             <!-- Delete slide btn -->
             <button 
