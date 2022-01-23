@@ -5347,9 +5347,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 // import SliderCreate from './SliderCreate';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   // components: { SliderCreate },
@@ -5373,8 +5370,8 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.loading = true;
-    axios.get('/api/admin/sliders').then(function (response) {
-      _this.sliders = response.data.data;
+    axios.get('/api/admin/departments').then(function (response) {
+      _this.departments = response.data.data;
     }).then(this.loading = false);
   } // methods: {
   //   deleteSlide(slider) {
@@ -11655,7 +11652,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.loading-wrapper[data-v-3a00fc02] {\n  position: fixed;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background: #00000045;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.lds-ellipsis[data-v-3a00fc02] {\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 80px;\n}\n.lds-ellipsis div[data-v-3a00fc02] {\n  position: absolute;\n  top: 33px;\n  width: 13px;\n  height: 13px;\n  border-radius: 50%;\n  background: #fff;\n  -webkit-animation-timing-function: cubic-bezier(0, 1, 1, 0);\n          animation-timing-function: cubic-bezier(0, 1, 1, 0);\n}\n.lds-ellipsis div[data-v-3a00fc02]:nth-child(1) {\n  left: 8px;\n  -webkit-animation: lds-ellipsis1-data-v-3a00fc02 0.6s infinite;\n          animation: lds-ellipsis1-data-v-3a00fc02 0.6s infinite;\n}\n.lds-ellipsis div[data-v-3a00fc02]:nth-child(2) {\n  left: 8px;\n  -webkit-animation: lds-ellipsis2-data-v-3a00fc02 0.6s infinite;\n          animation: lds-ellipsis2-data-v-3a00fc02 0.6s infinite;\n}\n.lds-ellipsis div[data-v-3a00fc02]:nth-child(3) {\n  left: 32px;\n  -webkit-animation: lds-ellipsis2-data-v-3a00fc02 0.6s infinite;\n          animation: lds-ellipsis2-data-v-3a00fc02 0.6s infinite;\n}\n.lds-ellipsis div[data-v-3a00fc02]:nth-child(4) {\n  left: 56px;\n  -webkit-animation: lds-ellipsis3-data-v-3a00fc02 0.6s infinite;\n          animation: lds-ellipsis3-data-v-3a00fc02 0.6s infinite;\n}\n@-webkit-keyframes lds-ellipsis1-data-v-3a00fc02 {\n0% {\n    transform: scale(0);\n}\n100% {\n    transform: scale(1);\n}\n}\n@keyframes lds-ellipsis1-data-v-3a00fc02 {\n0% {\n    transform: scale(0);\n}\n100% {\n    transform: scale(1);\n}\n}\n@-webkit-keyframes lds-ellipsis3-data-v-3a00fc02 {\n0% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0);\n}\n}\n@keyframes lds-ellipsis3-data-v-3a00fc02 {\n0% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0);\n}\n}\n@-webkit-keyframes lds-ellipsis2-data-v-3a00fc02 {\n0% {\n    transform: translate(0, 0);\n}\n100% {\n    transform: translate(24px, 0);\n}\n}\n@keyframes lds-ellipsis2-data-v-3a00fc02 {\n0% {\n    transform: translate(0, 0);\n}\n100% {\n    transform: translate(24px, 0);\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.loading-wrapper[data-v-3a00fc02] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background: #00000045;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.lds-ellipsis[data-v-3a00fc02] {\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 80px;\n}\n.lds-ellipsis div[data-v-3a00fc02] {\n  position: absolute;\n  top: 33px;\n  width: 13px;\n  height: 13px;\n  border-radius: 50%;\n  background: #fff;\n  -webkit-animation-timing-function: cubic-bezier(0, 1, 1, 0);\n          animation-timing-function: cubic-bezier(0, 1, 1, 0);\n}\n.lds-ellipsis div[data-v-3a00fc02]:nth-child(1) {\n  left: 8px;\n  -webkit-animation: lds-ellipsis1-data-v-3a00fc02 0.6s infinite;\n          animation: lds-ellipsis1-data-v-3a00fc02 0.6s infinite;\n}\n.lds-ellipsis div[data-v-3a00fc02]:nth-child(2) {\n  left: 8px;\n  -webkit-animation: lds-ellipsis2-data-v-3a00fc02 0.6s infinite;\n          animation: lds-ellipsis2-data-v-3a00fc02 0.6s infinite;\n}\n.lds-ellipsis div[data-v-3a00fc02]:nth-child(3) {\n  left: 32px;\n  -webkit-animation: lds-ellipsis2-data-v-3a00fc02 0.6s infinite;\n          animation: lds-ellipsis2-data-v-3a00fc02 0.6s infinite;\n}\n.lds-ellipsis div[data-v-3a00fc02]:nth-child(4) {\n  left: 56px;\n  -webkit-animation: lds-ellipsis3-data-v-3a00fc02 0.6s infinite;\n          animation: lds-ellipsis3-data-v-3a00fc02 0.6s infinite;\n}\n@-webkit-keyframes lds-ellipsis1-data-v-3a00fc02 {\n0% {\n    transform: scale(0);\n}\n100% {\n    transform: scale(1);\n}\n}\n@keyframes lds-ellipsis1-data-v-3a00fc02 {\n0% {\n    transform: scale(0);\n}\n100% {\n    transform: scale(1);\n}\n}\n@-webkit-keyframes lds-ellipsis3-data-v-3a00fc02 {\n0% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0);\n}\n}\n@keyframes lds-ellipsis3-data-v-3a00fc02 {\n0% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0);\n}\n}\n@-webkit-keyframes lds-ellipsis2-data-v-3a00fc02 {\n0% {\n    transform: translate(0, 0);\n}\n100% {\n    transform: translate(24px, 0);\n}\n}\n@keyframes lds-ellipsis2-data-v-3a00fc02 {\n0% {\n    transform: translate(0, 0);\n}\n100% {\n    transform: translate(24px, 0);\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -30781,130 +30778,102 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container py-4 admin-departments" },
-    [
-      _c("div", { staticClass: "page-title d-flex justify-content-between" }, [
-        _c("h3", [_vm._v("دپارتمان‌ها")]),
+  return _c("div", { staticClass: "container py-4 admin-departments" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "table table-striped table-hover" },
+      [
+        _vm._m(1),
+        _vm._v(" "),
+        _vm.loading ? _c("loading") : _vm._e(),
         _vm._v(" "),
         _c(
-          "button",
-          { staticClass: "btn btn-success", on: { click: _vm.showingModal } },
-          [_vm._v("\n      دپارتمان جدید\n    ")]
-        ),
-      ]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("alert", { attrs: { alertData: _vm.alertData } }),
-      _vm._v(" "),
-      _c("slider-create", {
-        attrs: { showModal: _vm.showModal, sliderUpdate: _vm.sliderUpdate },
-        on: {
-          alertShow: _vm.alertShow,
-          showingModal: _vm.showingModal,
-          newSliderAdded: _vm.newSliderAdded,
-          sliderUpdated: _vm.sliderUpdated,
-        },
-      }),
-      _vm._v(" "),
-      _vm.loading
-        ? _c("loading")
-        : _c("div", [
-            _c("table", { staticClass: "table table-striped table-hover" }, [
-              _c("thead", [
-                _c("tr", [
-                  _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
-                  _vm._v(" "),
-                  _c("th", { attrs: { scope: "col" } }, [
-                    _vm._v("نام دپارتمان"),
-                  ]),
-                  _vm._v(" "),
-                  _c("th", { attrs: { scope: "col" } }, [
-                    _vm._v("مدیر دپارتمان"),
-                  ]),
-                  _vm._v(" "),
-                  _c("th", { attrs: { scope: "col" } }, [
-                    _vm._v("تاریخ ایجاد"),
-                  ]),
-                  _vm._v(" "),
-                  _c("th", { attrs: { scope: "col" } }, [_vm._v("ویرایش/حذف")]),
-                ]),
-              ]),
+          "tbody",
+          _vm._l(_vm.departments, function (department, index) {
+            return _c("tr", { key: "department-" + index }, [
+              _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(++index))]),
               _vm._v(" "),
-              _c(
-                "tbody",
-                _vm._l(_vm.sliders, function (slider, index) {
-                  return _c("tr", { key: "slider-" + index }, [
-                    _c("th", { attrs: { scope: "row" } }, [
-                      _vm._v(_vm._s(++index)),
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("img", {
-                        attrs: {
-                          width: "120",
-                          src: "/images/sliders/" + slider.image,
-                        },
-                      }),
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(slider.name))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(slider.updated_at))]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "bg-transparent border-0",
-                          on: {
-                            click: function ($event) {
-                              return _vm.showingModalUpdate(
-                                slider.id,
-                                slider.name,
-                                slider.image
-                              )
-                            },
-                          },
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "fas fa-edit fa-lg text-info",
-                          }),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "bg-transparent border-0 me-3",
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              return _vm.deleteSlide(slider.id)
-                            },
-                          },
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "fas fa-trash fa-lg text-danger",
-                          }),
-                        ]
-                      ),
-                    ]),
-                  ])
-                }),
-                0
-              ),
-            ]),
-          ]),
-    ],
-    1
-  )
+              _c("td", [_vm._v(_vm._s(department.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("unknown")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(department.updated_at))]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "bg-transparent border-0",
+                    on: {
+                      click: function ($event) {
+                        return _vm.showingModalUpdate(
+                          _vm.slider.id,
+                          _vm.slider.name,
+                          _vm.slider.image
+                        )
+                      },
+                    },
+                  },
+                  [_c("i", { staticClass: "fas fa-edit fa-lg text-info" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "bg-transparent border-0 me-3",
+                    on: {
+                      click: function ($event) {
+                        $event.preventDefault()
+                        return _vm.deleteSlide(_vm.slider.id)
+                      },
+                    },
+                  },
+                  [_c("i", { staticClass: "fas fa-trash fa-lg text-danger" })]
+                ),
+              ]),
+            ])
+          }),
+          0
+        ),
+      ],
+      1
+    ),
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "page-title d-flex justify-content-between" },
+      [_c("h3", [_vm._v("دپارتمان‌ها")])]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("نام دپارتمان")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("مدیر دپارتمان")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("تاریخ ایجاد")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("ویرایش/حذف")]),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

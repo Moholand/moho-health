@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Site\SliderController;
 use App\Http\Controllers\Admin\AdminSliderController;
+use App\Http\Controllers\Admin\AdminDepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +29,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 Route::get('/sliders', SliderController::class);
 
 Route::group([], function() {
-    Route::apiResource('/admin/sliders', AdminSliderController::class);
+    Route::apiResource('/admin/sliders', AdminSliderController::class)->except(['show']);
+    Route::apiResource('/admin/departments', AdminDepartmentController::class)->except(['show']);
 });

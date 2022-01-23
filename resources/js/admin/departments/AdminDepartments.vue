@@ -3,67 +3,64 @@
     <div class="page-title d-flex justify-content-between">
       <h3>دپارتمان‌ها</h3>
 
-      <button 
+      <!-- <button 
         class="btn btn-success" 
         @click="showingModal"
       >
         دپارتمان جدید
-      </button>
+      </button> -->
 
     </div>
     <hr>
-    <alert 
+    <!-- <alert 
       :alertData="alertData"
-    ></alert>
-    <slider-create
+    ></alert> -->
+    <!-- <slider-create
       @alertShow="alertShow"
       @showingModal="showingModal"
       @newSliderAdded="newSliderAdded"
       @sliderUpdated="sliderUpdated"
       :showModal="showModal"
       :sliderUpdate="sliderUpdate"
-    ></slider-create>
+    ></slider-create> -->
 
-    <loading v-if="loading"></loading>
-    <div v-else>
-      <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">نام دپارتمان</th>
-            <th scope="col">مدیر دپارتمان</th>
-            <th scope="col">تاریخ ایجاد</th>
-            <th scope="col">ویرایش/حذف</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(slider, index) in sliders" :key="`slider-${index}`">
-            <th scope="row">{{ ++index }}</th>
-            <td>
-              <img width="120" :src="`/images/sliders/${slider.image}`">
-            </td>
-            <td>{{ slider.name }}</td>
-            <td>{{ slider.updated_at }}</td>
-            <td>
-              <!-- Update slide btn -->
-              <button 
-                class="bg-transparent border-0" 
-                @click="showingModalUpdate(slider.id, slider.name, slider.image)"
-              >
-                <i class="fas fa-edit fa-lg text-info"></i>
-              </button>
-              <!-- Delete slide btn -->
-              <button 
-                class="bg-transparent border-0 me-3" 
-                @click.prevent="deleteSlide(slider.id)"
-              >
-                <i class="fas fa-trash fa-lg text-danger"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">نام دپارتمان</th>
+          <th scope="col">مدیر دپارتمان</th>
+          <th scope="col">تاریخ ایجاد</th>
+          <th scope="col">ویرایش/حذف</th>
+        </tr>
+      </thead>
+      
+      <loading v-if="loading"></loading>
+      <tbody>
+        <tr v-for="(department, index) in departments" :key="`department-${index}`">
+          <th scope="row">{{ ++index }}</th>
+          <td>{{ department.name }}</td>
+          <td>unknown</td>
+          <td>{{ department.updated_at }}</td>
+          <td>
+            <!-- Update slide btn -->
+            <button 
+              class="bg-transparent border-0" 
+              @click="showingModalUpdate(slider.id, slider.name, slider.image)"
+            >
+              <i class="fas fa-edit fa-lg text-info"></i>
+            </button>
+            <!-- Delete slide btn -->
+            <button 
+              class="bg-transparent border-0 me-3" 
+              @click.prevent="deleteSlide(slider.id)"
+            >
+              <i class="fas fa-trash fa-lg text-danger"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -91,9 +88,9 @@ export default {
   created() {
     this.loading = true;
 
-    axios.get('/api/admin/sliders')
+    axios.get('/api/admin/departments')
       .then(response => {
-        this.sliders = response.data.data;
+        this.departments = response.data.data;
       })
       .then(this.loading = false);
   },
