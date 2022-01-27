@@ -12,7 +12,8 @@ export default {
   data() {
     return {
       currentUser: null,
-      token: localStorage.getItem('token')
+      token: localStorage.getItem('token'),
+      test: false
     }
   },
   created() {
@@ -25,6 +26,6 @@ export default {
         this.$store.commit('setCurrentUser', response.data);
       })
       .catch(error => console.log(error));
-  },
+  }
 }
 </script>

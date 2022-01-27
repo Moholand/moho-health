@@ -1,10 +1,6 @@
 <template>
   <div>
-    <!-- Modal -->
-    <div 
-      class="create-slider-modal"
-      :class="{'show': showModal}"
-    >
+    <div class="create-slider-modal" :class="{'show': showModal}">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">

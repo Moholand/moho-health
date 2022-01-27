@@ -1,28 +1,22 @@
 <template>
   <div class="container py-4 admin-departments">
-    <div class="page-title d-flex justify-content-between">
+    <div class="page-title d-flex justify-content-between align-items-center">
       <h3>دپارتمان‌ها</h3>
-
-      <!-- <button 
-        class="btn btn-success" 
-        @click="showingModal"
-      >
-        دپارتمان جدید
-      </button> -->
-
+      <button class="btn btn-outline-primary" @click="showingModal">دپارتمان جدید</button>
     </div>
     <hr>
-    <!-- <alert 
-      :alertData="alertData"
-    ></alert> -->
-    <!-- <slider-create
+
+    <alert :alertData="alertData"></alert>
+
+    <department-create 
+      @showingModal="showingModal" 
+      @departmentAdded="departmentAdded"
+      @departmentUpdated="departmentUpdated"
+      @closeUpdateModal="closeUpdateModal"
       @alertShow="alertShow"
-      @showingModal="showingModal"
-      @newSliderAdded="newSliderAdded"
-      @sliderUpdated="sliderUpdated"
-      :showModal="showModal"
-      :sliderUpdate="sliderUpdate"
-    ></slider-create> -->
+      :showModal="departmentCreateModal"
+      :departmentUpdate="departmentUpdate"
+    ></department-create>
 
     <table class="table table-striped table-hover">
       <thead>
@@ -42,22 +36,18 @@
           <td>{{ department.name }}</td>
           <td>unknown</td>
           <td>{{ department.updated_at }}</td>
+
           <td>
-            <!-- Update slide btn -->
-            <button 
-              class="bg-transparent border-0" 
-              @click="showingModalUpdate(slider.id, slider.name, slider.image)"
-            >
+            <!-- Update department btn -->
+            <button class="bg-transparent border-0" @click="showingUpdateModal(department.id, department.name)">
               <i class="fas fa-edit fa-lg text-primary"></i>
             </button>
-            <!-- Delete slide btn -->
-            <button 
-              class="bg-transparent border-0 me-3" 
-              @click.prevent="deleteSlide(slider.id)"
-            >
+            <!-- Delete department btn -->
+            <button class="bg-transparent border-0 me-3" @click.prevent="deleteDepartment(department.id)">
               <i class="fas fa-trash fa-lg text-danger"></i>
             </button>
           </td>
+
         </tr>
       </tbody>
     </table>
@@ -65,24 +55,23 @@
 </template>
 
 <script>
-// import SliderCreate from './SliderCreate';
+import DepartmentCreate from './DepartmentCreate';
 
 export default {
-  // components: { SliderCreate },
+  components: { DepartmentCreate },
   data() {
     return {
       loading: false,
+      departmentCreateModal: false,
       departments: null,
       alertData: {
-        show: false,
+        show: null,
         message: null
       },
-      showModal: false,
-      // departmentUpdate: {
-      //   id: null,
-      //   name: null,
-      //   image: null,
-      // },
+      departmentUpdate: {
+        id: null,
+        name: null,
+      }
     }
   },
   created() {
@@ -94,52 +83,56 @@ export default {
       })
       .then(this.loading = false);
   },
-  // methods: {
-  //   deleteSlide(slider) {
-  //     axios.delete(`/api/admin/sliders/${slider}`)
-  //       .then(response => {
-  //         // Show Success alert
-  //         this.alertData = {
-  //           show: true,
-  //           message: response.data.message
-  //         };
-  //         // reRendered sliders item
-  //         this.sliders = response.data.sliders;
-  //     });
-  //   },
-  //   alertShow(event) {
-  //     this.alertData = {
-  //       show: true,
-  //       message: event
-  //     };
-  //   },
-  //   showingModal() {
-  //     this.showModal = !this.showModal;
-  //   },
-  //   showingModalUpdate(slider_id, slider_name, slider_image) {
-  //     this.showingModal();
-  //     this.sliderUpdate = {
-  //       id: slider_id,
-  //       name: slider_name,
-  //       image: slider_image
-  //     }
-  //   },
-  //   newSliderAdded(slider) {
-  //     this.sliders.push(slider);
-  //   },
-  //   sliderUpdated(updateSlider) {
-  //     // Add updated slider to the DOM
-  //     this.sliders = this.sliders.map(slider => {
-  //       return (slider.id === updateSlider.id) ? updateSlider : slider;
-  //     });
+  methods: {
+    showingModal() {
+      this.departmentCreateModal = !this.departmentCreateModal;
+    },
+    closeUpdateModal() {
+      this.resetDepartmentUpdateData();
+      this.showingModal();
+    },
+    alertShow(event) {
+      this.alertData = {
+        show: true,
+        message: event
+      };
+    },
+    departmentAdded(department) {
+      this.departments.push(department);
+    },
+    deleteDepartment(department_id) {
+      axios.delete(`/api/admin/departments/${department_id}`)
+        .then(response => {
+          // Show Success alert
+          this.alertData = {
+            show: true,
+            message: response.data.message
+          };
+          // reRendered departments item
+          this.departments = response.data.departments;
+      });
+    },
+    showingUpdateModal(id, name) {
+      this.showingModal();
+      this.departmentUpdate = {
+        id,
+        name
+      }
+    },
+    departmentUpdated(newDepartment) {
+      // Add updated department to the DOM
+      this.departments = this.departments.map(department => {
+        return (department.id === newDepartment.id) ? newDepartment : department;
+      });
 
-  //     // Reset slider update data
-  //     this.sliderUpdate = {
-  //       id: null,
-  //       name: null,
-  //       image: null
-  //     }
-  //   }
-  // }
+      this.resetDepartmentUpdateData();
+    },
+    resetDepartmentUpdateData() {
+      this.departmentUpdate = {
+        id: null,
+        name: null,
+      }
+    }
+  }
 }
 </script>
