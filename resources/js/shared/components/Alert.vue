@@ -1,9 +1,11 @@
 <template>
-  <div class="custom-alert" v-show="alertData.show">
-    <div class="row mx-0">
-      {{ alertData.message }}
+  <transition name="alert-box">
+    <div class="custom-alert" v-show="alertData.show">
+      <div class="row mx-0">
+        {{ alertData.message }}
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -33,5 +35,14 @@ export default {
     border-radius: 5px;
     font-weight: bold;
     padding: 10px;
+  }
+
+  .alert-box-enter-active, .alert-box-leave-active {
+    transition: 0.5s all ease;
+  }
+
+  .alert-box-enter, .alert-box-leave-to {
+    transform: translateX(100px);
+    opacity: 0;
   }
 </style>

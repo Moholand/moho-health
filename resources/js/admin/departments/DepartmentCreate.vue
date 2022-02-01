@@ -1,42 +1,49 @@
 <template>
-  <div class="create-department-modal" :class="{'show': showModal}" @click.self="$emit('closeUpdateModal')">
-    <div class="modal-dialog">
-      <div class="modal-content">
+  
+    <div class="create-department-modal" v-show="showModal" @click.self="$emit('closeUpdateModal')">
 
-        <div class="modal-header">
-          <h5 class="modal-title">
-            <span v-if="departmentUpdate.id">ویرایش دپارتمان</span>
-            <span v-else>ایجاد دپارتمان جدید</span>
-          </h5>
-          <button type="button" class="btn-close ms-0" @click="$emit('closeUpdateModal')"></button>
-        </div>
+      <transition name="modal-box">
+        <div class="modal-dialog" v-show="showModal">
+    
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">
+                  <span v-if="departmentUpdate.id">ویرایش دپارتمان</span>
+                  <span v-else>ایجاد دپارتمان جدید</span>
+                </h5>
+                <button type="button" class="btn-close ms-0" @click="$emit('closeUpdateModal')"></button>
+              </div>
 
-        <div class="modal-body">
-          <form>
-            <div class="form-group d-flex align-items-center mb-5">
-              <label for="name" class="col-md-3">نام دپارتمان:</label>
-              <div class="col-md-9">
-                <input 
-                  type="text" 
-                  class="form-control"
-                  :class="{'is-invalid': errors && errors.name}"
-                  placeholder="لطفاً نام دپارتمان را وارد نمایید"
-                  v-model="departmentName"
-                >
-                <div class="invalid-feedback" v-if="errors && errors.name">
-                  <strong>{{ errors.name[0] }}</strong>
-                </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group d-flex align-items-center mb-5">
+                    <label for="name" class="col-md-3">نام دپارتمان:</label>
+                    <div class="col-md-9">
+                      <input 
+                        type="text" 
+                        class="form-control"
+                        :class="{'is-invalid': errors && errors.name}"
+                        placeholder="لطفاً نام دپارتمان را وارد نمایید"
+                        v-model="departmentName"
+                      >
+                      <div class="invalid-feedback" v-if="errors && errors.name">
+                        <strong>{{ errors.name[0] }}</strong>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" @click="$emit('closeUpdateModal')">بازگشت</button>
+                <button type="button" id="submit" class="btn btn-primary" @click.prevent="submitForm">ایجاد اسلاید</button>
               </div>
             </div>
-          </form>
+        
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" @click="$emit('closeUpdateModal')">بازگشت</button>
-          <button type="button" id="submit" class="btn btn-primary" @click.prevent="submitForm">ایجاد اسلاید</button>
-        </div>
-      </div>
+      </transition>
+
     </div>
-  </div>
+
 </template>
 
 <script>
@@ -130,12 +137,11 @@ export default {
 </script>
 
 <style scoped>
-  .create-department-modal {
+ .create-department-modal {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1060;
-    display: none;
     width: 100%;
     height: 100%;
     overflow-x: hidden;
@@ -144,17 +150,16 @@ export default {
     background: #00000035;
   }
 
-  .create-department-modal.show {
-    display: block;
-  }
-
   .modal-dialog {
-    transition: transform 0.3s ease-out;
-    transform: translateY(-50px);
     z-index: 1050;
   }
 
-  .create-department-modal.show .modal-dialog {
-    transform: none;
+  .modal-box-enter-active, .modal-box-leave-active {
+    transition: 0.5s all ease;
+  }
+
+  .modal-box-enter, .modal-box-leave-to {
+    transform: translateY(-50px);
+    opacity: 0;
   }
 </style>

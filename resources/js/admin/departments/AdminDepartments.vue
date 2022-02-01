@@ -23,7 +23,6 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">نام دپارتمان</th>
-          <th scope="col">مدیر دپارتمان</th>
           <th scope="col">تاریخ ایجاد</th>
           <th scope="col">ویرایش/حذف</th>
         </tr>
@@ -34,7 +33,6 @@
         <tr v-for="(department, index) in departments" :key="`department-${index}`">
           <th scope="row">{{ ++index }}</th>
           <td>{{ department.name }}</td>
-          <td>unknown</td>
           <td>{{ department.updated_at }}</td>
 
           <td>

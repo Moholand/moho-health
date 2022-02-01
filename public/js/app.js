@@ -5336,8 +5336,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5432,6 +5430,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6284,6 +6289,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
 //
 //
 //
@@ -11669,7 +11676,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.create-department-modal[data-v-09ea07ba] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1060;\n  display: none;\n  width: 100%;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: auto;\n  outline: 0;\n  background: #00000035;\n}\n.create-department-modal.show[data-v-09ea07ba] {\n  display: block;\n}\n.modal-dialog[data-v-09ea07ba] {\n  transition: transform 0.3s ease-out;\n  transform: translateY(-50px);\n  z-index: 1050;\n}\n.create-department-modal.show .modal-dialog[data-v-09ea07ba] {\n  transform: none;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.create-department-modal[data-v-09ea07ba] {\n   position: fixed;\n   top: 0;\n   left: 0;\n   z-index: 1060;\n   width: 100%;\n   height: 100%;\n   overflow-x: hidden;\n   overflow-y: auto;\n   outline: 0;\n   background: #00000035;\n}\n.modal-dialog[data-v-09ea07ba] {\n   z-index: 1050;\n}\n.modal-box-enter-active[data-v-09ea07ba], .modal-box-leave-active[data-v-09ea07ba] {\n   transition: 0.5s all ease;\n}\n.modal-box-enter[data-v-09ea07ba], .modal-box-leave-to[data-v-09ea07ba] {\n   transform: translateY(-50px);\n   opacity: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11765,7 +11772,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.custom-alert[data-v-5f3a28df] {\n  position: fixed;\n  top: 10%;\n  right: 5%;\n  background: #55efc4;\n  color: #ffffff;\n  width: 300px;\n  height: 50px;\n  border-radius: 5px;\n  font-weight: bold;\n  padding: 10px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.custom-alert[data-v-5f3a28df] {\n  position: fixed;\n  top: 10%;\n  right: 5%;\n  background: #55efc4;\n  color: #ffffff;\n  width: 300px;\n  height: 50px;\n  border-radius: 5px;\n  font-weight: bold;\n  padding: 10px;\n}\n.alert-box-enter-active[data-v-5f3a28df], .alert-box-leave-active[data-v-5f3a28df] {\n  transition: 0.5s all ease;\n}\n.alert-box-enter[data-v-5f3a28df], .alert-box-leave-to[data-v-5f3a28df] {\n  transform: translateX(100px);\n  opacity: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -31116,8 +31123,6 @@ var render = function () {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(department.name))]),
                 _vm._v(" "),
-                _c("td", [_vm._v("unknown")]),
-                _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(department.updated_at))]),
                 _vm._v(" "),
                 _c("td", [
@@ -31173,8 +31178,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("نام دپارتمان")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("مدیر دپارتمان")]),
-        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("تاریخ ایجاد")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("ویرایش/حذف")]),
@@ -31207,8 +31210,15 @@ var render = function () {
   return _c(
     "div",
     {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.showModal,
+          expression: "showModal",
+        },
+      ],
       staticClass: "create-department-modal",
-      class: { show: _vm.showModal },
       on: {
         click: function ($event) {
           if ($event.target !== $event.currentTarget) {
@@ -31219,109 +31229,132 @@ var render = function () {
       },
     },
     [
-      _c("div", { staticClass: "modal-dialog" }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _c("div", { staticClass: "modal-header" }, [
-            _c("h5", { staticClass: "modal-title" }, [
-              _vm.departmentUpdate.id
-                ? _c("span", [_vm._v("ویرایش دپارتمان")])
-                : _c("span", [_vm._v("ایجاد دپارتمان جدید")]),
-            ]),
-            _vm._v(" "),
-            _c("button", {
-              staticClass: "btn-close ms-0",
-              attrs: { type: "button" },
-              on: {
-                click: function ($event) {
-                  return _vm.$emit("closeUpdateModal")
-                },
+      _c("transition", { attrs: { name: "modal-box" } }, [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.showModal,
+                expression: "showModal",
               },
-            }),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
-            _c("form", [
-              _c(
-                "div",
-                { staticClass: "form-group d-flex align-items-center mb-5" },
-                [
+            ],
+            staticClass: "modal-dialog",
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c("h5", { staticClass: "modal-title" }, [
+                  _vm.departmentUpdate.id
+                    ? _c("span", [_vm._v("ویرایش دپارتمان")])
+                    : _c("span", [_vm._v("ایجاد دپارتمان جدید")]),
+                ]),
+                _vm._v(" "),
+                _c("button", {
+                  staticClass: "btn-close ms-0",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.$emit("closeUpdateModal")
+                    },
+                  },
+                }),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("form", [
                   _c(
-                    "label",
-                    { staticClass: "col-md-3", attrs: { for: "name" } },
-                    [_vm._v("نام دپارتمان:")]
+                    "div",
+                    {
+                      staticClass: "form-group d-flex align-items-center mb-5",
+                    },
+                    [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-3", attrs: { for: "name" } },
+                        [_vm._v("نام دپارتمان:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.departmentName,
+                              expression: "departmentName",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.errors && _vm.errors.name,
+                          },
+                          attrs: {
+                            type: "text",
+                            placeholder: "لطفاً نام دپارتمان را وارد نمایید",
+                          },
+                          domProps: { value: _vm.departmentName },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.departmentName = $event.target.value
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _vm.errors && _vm.errors.name
+                          ? _c("div", { staticClass: "invalid-feedback" }, [
+                              _c("strong", [
+                                _vm._v(_vm._s(_vm.errors.name[0])),
+                              ]),
+                            ])
+                          : _vm._e(),
+                      ]),
+                    ]
                   ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-9" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.departmentName,
-                          expression: "departmentName",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      class: { "is-invalid": _vm.errors && _vm.errors.name },
-                      attrs: {
-                        type: "text",
-                        placeholder: "لطفاً نام دپارتمان را وارد نمایید",
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.$emit("closeUpdateModal")
                       },
-                      domProps: { value: _vm.departmentName },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.departmentName = $event.target.value
-                        },
+                    },
+                  },
+                  [_vm._v("بازگشت")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button", id: "submit" },
+                    on: {
+                      click: function ($event) {
+                        $event.preventDefault()
+                        return _vm.submitForm.apply(null, arguments)
                       },
-                    }),
-                    _vm._v(" "),
-                    _vm.errors && _vm.errors.name
-                      ? _c("div", { staticClass: "invalid-feedback" }, [
-                          _c("strong", [_vm._v(_vm._s(_vm.errors.name[0]))]),
-                        ])
-                      : _vm._e(),
-                  ]),
-                ]
-              ),
+                    },
+                  },
+                  [_vm._v("ایجاد اسلاید")]
+                ),
+              ]),
             ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-footer" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-secondary",
-                attrs: { type: "button" },
-                on: {
-                  click: function ($event) {
-                    return _vm.$emit("closeUpdateModal")
-                  },
-                },
-              },
-              [_vm._v("بازگشت")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { type: "button", id: "submit" },
-                on: {
-                  click: function ($event) {
-                    $event.preventDefault()
-                    return _vm.submitForm.apply(null, arguments)
-                  },
-                },
-              },
-              [_vm._v("ایجاد اسلاید")]
-            ),
-          ]),
-        ]),
+          ]
+        ),
       ]),
-    ]
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -32163,25 +32196,27 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      directives: [
-        {
-          name: "show",
-          rawName: "v-show",
-          value: _vm.alertData.show,
-          expression: "alertData.show",
-        },
-      ],
-      staticClass: "custom-alert",
-    },
-    [
-      _c("div", { staticClass: "row mx-0" }, [
-        _vm._v("\n    " + _vm._s(_vm.alertData.message) + "\n  "),
-      ]),
-    ]
-  )
+  return _c("transition", { attrs: { name: "alert-box" } }, [
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.alertData.show,
+            expression: "alertData.show",
+          },
+        ],
+        staticClass: "custom-alert",
+      },
+      [
+        _c("div", { staticClass: "row mx-0" }, [
+          _vm._v("\n      " + _vm._s(_vm.alertData.message) + "\n    "),
+        ]),
+      ]
+    ),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
