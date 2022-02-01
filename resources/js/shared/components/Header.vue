@@ -15,6 +15,21 @@
               <router-link :to="{ name: 'home'}" aria-current="page" class="nav-link">خانه</router-link>
             </li>
             <li class="nav-item d-flex align-items-center me-4">
+              <i class="fas fa-home"></i>
+              <div class="dropdown">
+                <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">
+                  دپارتمان‌ها
+                </a>
+                <ul class="dropdown-menu">
+                  <li v-for="(department, index) in departments" :key="`department-${index}`">
+                    <router-link :to="{ name: 'home'}" class="dropdown-item">
+                      {{ department.name }}
+                    </router-link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item d-flex align-items-center me-4">
               <i class="fas fa-laptop-medical"></i>
               <router-link :to="{ name: 'about'}" class="nav-link">درباره ما</router-link>
             </li>
@@ -66,6 +81,18 @@
 
 <script>
 export default {
+  data() {
+    return {
+      departments: null,
+    }
+  },
+  async mounted() {
+    try {
+      this.departments = (await axios.get('/api/departments')).data.data;
+    } catch(erorr) {
+      console.log(erorr);
+    }
+  },
   methods: {
     logout() {
       axios.post('api/logout')

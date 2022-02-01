@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Site;
+namespace App\Http\Controllers\User;
 
 use App\Models\Slider;
 use Illuminate\Http\Request;

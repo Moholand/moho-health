@@ -3,7 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Site\SliderController;
+use App\Http\Controllers\User\SliderController;
+use App\Http\Controllers\User\DepartmentController;
 use App\Http\Controllers\Admin\AdminSliderController;
 use App\Http\Controllers\Admin\AdminDepartmentController;
 
@@ -27,8 +28,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 Route::get('/sliders', SliderController::class);
+Route::apiResource('/departments', DepartmentController::class)->only(['index', 'show']);
 
-Route::group([], function() {
-    Route::apiResource('/admin/sliders', AdminSliderController::class)->except(['show']);
-    Route::apiResource('/admin/departments', AdminDepartmentController::class)->except(['show']);
+Route::group(['prefix'=>'/admin','as'=>'admin.'], function() {
+    Route::apiResource('/sliders', AdminSliderController::class)->except(['show']);
+    Route::apiResource('/departments', AdminDepartmentController::class)->except(['show']);
 });
