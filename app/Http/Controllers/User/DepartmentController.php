@@ -13,8 +13,8 @@ class DepartmentController extends Controller
         return DepartmentResource::collection(Department::all());
     }
 
-    public function show($id)
+    public function show(Department $department)
     {
-        //
+        return new DepartmentResource($department);
     }
 }

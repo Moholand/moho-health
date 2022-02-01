@@ -3,6 +3,7 @@ import Home from './home/Home';
 import About from './about/About';
 import AdminSliders from './admin/sliders/AdminSliders';
 import AdminDepartments from './admin/departments/AdminDepartments';
+import Department from './user/departments/Department';
 import Register from './auth/Register';
 import Login from './auth/Login';
 
@@ -40,6 +41,11 @@ const routes = [
     name: 'admin-departments',
     component: AdminDepartments,
     meta: { requiresAuth: true }
+  },
+  {
+    path: "/departments/:department",
+    name: 'departments.show',
+    component: Department,
   },
 ];
 
