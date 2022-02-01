@@ -1,24 +1,26 @@
 <template>
   <div class="header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-info flex-column">
+    <nav class="navbar navbar-expand-lg navbar-light flex-column">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">MOHOLAND</a>
+        <router-link :to="{ name: 'home'}" class="navbar-brand">MOHOLAND</router-link>
       </div>
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 pe-3">
             <li class="nav-item d-flex align-items-center">
-              <i class="fas fa-home"></i>
-              <router-link :to="{ name: 'home'}" aria-current="page" class="nav-link">خانه</router-link>
+              <router-link :to="{ name: 'home'}" aria-current="page" class="nav-link">
+                <i class="fas fa-home fa-sm"></i>
+                <span class="nav-menu">خانه</span>
+              </router-link>
             </li>
-            <li class="nav-item d-flex align-items-center me-4">
-              <i class="fas fa-home"></i>
+            <li class="nav-item d-flex align-items-center me-5">
               <div class="dropdown">
                 <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">
-                  دپارتمان‌ها
+                  <i class="far fa-building fa-sm"></i>
+                  <span class="nav-menu">دپارتمان‌ها</span>
                 </a>
                 <ul class="dropdown-menu">
                   <li v-for="(department, index) in departments" :key="`department-${index}`">
@@ -29,9 +31,11 @@
                 </ul>
               </div>
             </li>
-            <li class="nav-item d-flex align-items-center me-4">
-              <i class="fas fa-laptop-medical"></i>
-              <router-link :to="{ name: 'about'}" class="nav-link">درباره ما</router-link>
+            <li class="nav-item d-flex align-items-center me-5">
+              <router-link :to="{ name: 'about'}" class="nav-link">
+                <i class="fas fa-laptop-medical fa-sm"></i>
+                <span class="nav-menu">درباره ما</span>
+              </router-link>
             </li>
           </ul>
 
@@ -106,3 +110,21 @@ export default {
   }
 }
 </script>
+
+<style scoped> 
+  .header {
+    border-bottom: 1px solid #25CCF7;
+  }
+
+  .navbar-brand {
+    color: #1B9CFC;
+  }
+
+  .navbar-brand:hover, .navbar-brand:focus {
+    color: #25CCF7;
+  }
+
+  .nav-menu {
+    font-size: 15px;
+  }
+</style>
