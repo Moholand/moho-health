@@ -41,8 +41,7 @@ class AdminDepartmentController extends Controller
         $department->delete();
 
         return response()->json([
-            'message' => 'دپارتمان مورد نظر با موفقیت حذف شد',
-            'departments' => Department::all()
+            'message' => 'دپارتمان مورد نظر با موفقیت حذف شد'
         ], 200);
     }
 }

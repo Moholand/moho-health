@@ -5356,13 +5356,15 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  created: function created() {
+  mounted: function mounted() {
     var _this = this;
 
     this.loading = true;
     axios.get('/api/admin/departments').then(function (response) {
       _this.departments = response.data.data;
-    }).then(this.loading = false);
+    }).then(function () {
+      return _this.loading = false;
+    });
   },
   methods: {
     showingModal: function showingModal() {
@@ -5391,7 +5393,9 @@ __webpack_require__.r(__webpack_exports__);
           message: response.data.message
         }; // reRendered departments item
 
-        _this2.departments = response.data.departments;
+        _this2.departments = _this2.departments.filter(function (department) {
+          return department.id !== department_id;
+        });
       });
     },
     showingUpdateModal: function showingUpdateModal(id, name) {
@@ -31111,55 +31115,63 @@ var render = function () {
         [
           _vm._m(0),
           _vm._v(" "),
-          _vm.loading ? _c("loading") : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.departments, function (department, index) {
-              return _c("tr", { key: "department-" + index }, [
-                _c("th", { attrs: { scope: "row" } }, [
-                  _vm._v(_vm._s(++index)),
-                ]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(department.name))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(department.updated_at))]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "bg-transparent border-0",
-                      on: {
-                        click: function ($event) {
-                          return _vm.showingUpdateModal(
-                            department.id,
-                            department.name
-                          )
+          _vm.loading
+            ? _c("loading")
+            : _c(
+                "tbody",
+                _vm._l(_vm.departments, function (department, index) {
+                  return _c("tr", { key: "department-" + index }, [
+                    _c("th", { attrs: { scope: "row" } }, [
+                      _vm._v(_vm._s(++index)),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(department.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(department.updated_at))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "bg-transparent border-0",
+                          on: {
+                            click: function ($event) {
+                              return _vm.showingUpdateModal(
+                                department.id,
+                                department.name
+                              )
+                            },
+                          },
                         },
-                      },
-                    },
-                    [_c("i", { staticClass: "fas fa-edit fa-lg text-primary" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "bg-transparent border-0 me-3",
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          return _vm.deleteDepartment(department.id)
+                        [
+                          _c("i", {
+                            staticClass: "fas fa-edit fa-lg text-primary",
+                          }),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "bg-transparent border-0 me-3",
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.deleteDepartment(department.id)
+                            },
+                          },
                         },
-                      },
-                    },
-                    [_c("i", { staticClass: "fas fa-trash fa-lg text-danger" })]
-                  ),
-                ]),
-              ])
-            }),
-            0
-          ),
+                        [
+                          _c("i", {
+                            staticClass: "fas fa-trash fa-lg text-danger",
+                          }),
+                        ]
+                      ),
+                    ]),
+                  ])
+                }),
+                0
+              ),
         ],
         1
       ),

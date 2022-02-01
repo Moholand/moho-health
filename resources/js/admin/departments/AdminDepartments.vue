@@ -29,7 +29,7 @@
       </thead>
       
       <loading v-if="loading"></loading>
-      <tbody>
+      <tbody v-else>
         <tr v-for="(department, index) in departments" :key="`department-${index}`">
           <th scope="row">{{ ++index }}</th>
           <td>{{ department.name }}</td>
@@ -72,14 +72,14 @@ export default {
       }
     }
   },
-  created() {
+  mounted() {
     this.loading = true;
 
     axios.get('/api/admin/departments')
       .then(response => {
         this.departments = response.data.data;
       })
-      .then(this.loading = false);
+      .then(() => this.loading = false);
   },
   methods: {
     showingModal() {
@@ -107,7 +107,7 @@ export default {
             message: response.data.message
           };
           // reRendered departments item
-          this.departments = response.data.departments;
+          this.departments = this.departments.filter(department => department.id !== department_id);
       });
     },
     showingUpdateModal(id, name) {
