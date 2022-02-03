@@ -5347,6 +5347,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5363,7 +5365,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       departmentUpdate: {
         id: null,
-        name: null
+        name: null,
+        about: null
       }
     };
   },
@@ -5409,11 +5412,12 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
-    showingUpdateModal: function showingUpdateModal(id, name) {
+    showingUpdateModal: function showingUpdateModal(id, name, about) {
       this.showingModal();
       this.departmentUpdate = {
         id: id,
-        name: name
+        name: name,
+        about: about
       };
     },
     departmentUpdated: function departmentUpdated(newDepartment) {
@@ -5426,7 +5430,8 @@ __webpack_require__.r(__webpack_exports__);
     resetDepartmentUpdateData: function resetDepartmentUpdateData() {
       this.departmentUpdate = {
         id: null,
-        name: null
+        name: null,
+        about: null
       };
     }
   }
@@ -5493,6 +5498,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     showModal: Boolean,
@@ -5501,7 +5522,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       formData: {
-        name: null
+        name: null,
+        about: null
       },
       errors: null
     };
@@ -5509,13 +5531,25 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     departmentName: {
       get: function get() {
-        return this.departmentUpdate.name !== null ? this.departmentUpdate.name : this.formData.name;
+        return this.departmentUpdate.name ? this.departmentUpdate.name : this.formData.name;
       },
       set: function set(val) {
         if (this.departmentUpdate.name) {
           this.departmentUpdate.name = val;
         } else {
           this.formData.name = val;
+        }
+      }
+    },
+    departmentAbout: {
+      get: function get() {
+        return this.departmentUpdate.about ? this.departmentUpdate.about : this.formData.about;
+      },
+      set: function set(val) {
+        if (this.departmentUpdate.about) {
+          this.departmentUpdate.about = val;
+        } else {
+          this.formData.about = val;
         }
       }
     }
@@ -5540,7 +5574,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.$emit('departmentAdded', response.data.newDepartment); // Clear inputs
 
 
-        _this.formData.name = ''; // Hide modal
+        _this.formData.name = '';
+        _this.formData.about = ''; // Hide modal
 
         _this.$emit('showingModal');
       })["catch"](function (error) {
@@ -5552,8 +5587,10 @@ __webpack_require__.r(__webpack_exports__);
     updateDepartment: function updateDepartment() {
       var _this2 = this;
 
+      this.errors = null;
       var data = new FormData();
       data.append('name', this.departmentUpdate.name);
+      data.append('about', this.departmentUpdate.about);
       data.append('_method', 'PATCH');
       axios({
         method: 'post',
@@ -5570,7 +5607,8 @@ __webpack_require__.r(__webpack_exports__);
         _this2.$emit('departmentUpdated', response.data.department); // Clear inputs
 
 
-        _this2.name = ''; // Hide modal
+        _this2.name = '';
+        _this2.about = ''; // Hide modal
 
         _this2.$emit('showingModal');
       })["catch"](function (error) {
@@ -32093,6 +32131,8 @@ var render = function () {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(department.name))]),
                     _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(department.about.substr(0, 40)))]),
+                    _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(department.updated_at))]),
                     _vm._v(" "),
                     _c("td", [
@@ -32104,7 +32144,8 @@ var render = function () {
                             click: function ($event) {
                               return _vm.showingUpdateModal(
                                 department.id,
-                                department.name
+                                department.name,
+                                department.about
                               )
                             },
                           },
@@ -32155,6 +32196,8 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("نام دپارتمان")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("درباره دپارتمان")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("تاریخ ایجاد")]),
         _vm._v(" "),
@@ -32288,6 +32331,59 @@ var render = function () {
                           ? _c("div", { staticClass: "invalid-feedback" }, [
                               _c("strong", [
                                 _vm._v(_vm._s(_vm.errors.name[0])),
+                              ]),
+                            ])
+                          : _vm._e(),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group d-flex align-items-center mb-5",
+                    },
+                    [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-3", attrs: { for: "about" } },
+                        [_vm._v("درباره دپارتمان:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.departmentAbout,
+                              expression: "departmentAbout",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.errors && _vm.errors.about,
+                          },
+                          attrs: {
+                            placeholder:
+                              "لطفاً فیلد درباره دپارتمان را وارد کامل نمایید",
+                            rows: "5",
+                          },
+                          domProps: { value: _vm.departmentAbout },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.departmentAbout = $event.target.value
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _vm.errors && _vm.errors.about
+                          ? _c("div", { staticClass: "invalid-feedback" }, [
+                              _c("strong", [
+                                _vm._v(_vm._s(_vm.errors.about[0])),
                               ]),
                             ])
                           : _vm._e(),

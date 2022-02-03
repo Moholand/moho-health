@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Department;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\AdminDepartmentResource;
 use App\Http\Requests\Admin\Department\CreateDepartmentRequest;
+use App\Http\Requests\Admin\Department\UpdateDepartmentRequest;
 
 class AdminDepartmentController extends Controller
 {
@@ -17,7 +17,7 @@ class AdminDepartmentController extends Controller
 
     public function store(CreateDepartmentRequest $request)
     {
-        $depatment = Department::create( $request->only('name') );
+        $depatment = Department::create( $request->only(['name', 'about']) );
 
         return response()->json([
             'newDepartment' => $depatment,
@@ -25,9 +25,9 @@ class AdminDepartmentController extends Controller
         ], 200);
     }
 
-    public function update(Request $request, Department $department)
+    public function update(UpdateDepartmentRequest $request, Department $department)
     {
-        $department->update( $request->only('name') );
+        $department->update( $request->only(['name', 'about']) );
  
         return response()->json([
             'department' => $department,

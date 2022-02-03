@@ -17,6 +17,7 @@ class AdminDepartmentResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'about' => $this->about,
             'updated_at' => $this->updated_at,
         ];
     }

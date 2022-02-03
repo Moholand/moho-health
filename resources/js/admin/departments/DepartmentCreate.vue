@@ -31,6 +31,22 @@
                       </div>
                     </div>
                   </div>
+
+                  <div class="form-group d-flex align-items-center mb-5">
+                    <label for="about" class="col-md-3">درباره دپارتمان:</label>
+                    <div class="col-md-9">
+                      <textarea 
+                        class="form-control"
+                        :class="{'is-invalid': errors && errors.about}"
+                        placeholder="لطفاً فیلد درباره دپارتمان را وارد کامل نمایید"
+                        rows="5"
+                        v-model="departmentAbout"
+                      ></textarea>
+                      <div class="invalid-feedback" v-if="errors && errors.about">
+                        <strong>{{ errors.about[0] }}</strong>
+                      </div>
+                    </div>
+                  </div>
                 </form>
               </div>
               <div class="modal-footer">
@@ -52,7 +68,8 @@ export default {
   data() {
     return {
       formData: {
-        name: null
+        name: null,
+        about: null
       },
       errors: null
     }
@@ -60,13 +77,25 @@ export default {
   computed: {
     departmentName: {
       get() {
-        return this.departmentUpdate.name !== null ? this.departmentUpdate.name : this.formData.name;
+        return this.departmentUpdate.name ? this.departmentUpdate.name : this.formData.name;
       },
       set(val) {
         if(this.departmentUpdate.name) {
           this.departmentUpdate.name = val;
         } else {
           this.formData.name = val;
+        }
+      }
+    },
+    departmentAbout: {
+      get() {
+        return this.departmentUpdate.about ? this.departmentUpdate.about : this.formData.about;
+      },
+      set(val) {
+        if(this.departmentUpdate.about) {
+          this.departmentUpdate.about = val;
+        } else {
+          this.formData.about = val;
         }
       }
     }
@@ -92,6 +121,7 @@ export default {
 
         // Clear inputs
         this.formData.name = '';
+        this.formData.about = '';
 
         // Hide modal
         this.$emit('showingModal');
@@ -103,8 +133,11 @@ export default {
       });
     },
     updateDepartment() {
+      this.errors = null;
+      
       let data = new FormData();
       data.append('name', this.departmentUpdate.name);
+      data.append('about', this.departmentUpdate.about);
       data.append('_method', 'PATCH');
 
       axios({
@@ -122,6 +155,7 @@ export default {
 
         // Clear inputs
         this.name = '';
+        this.about = '';
 
         // Hide modal
         this.$emit('showingModal');

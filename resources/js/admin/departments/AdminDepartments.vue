@@ -23,6 +23,7 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">نام دپارتمان</th>
+          <th scope="col">درباره دپارتمان</th>
           <th scope="col">تاریخ ایجاد</th>
           <th scope="col">ویرایش/حذف</th>
         </tr>
@@ -33,11 +34,12 @@
         <tr v-for="(department, index) in departments" :key="`department-${index}`">
           <th scope="row">{{ ++index }}</th>
           <td>{{ department.name }}</td>
+          <td>{{ department.about.substr(0, 40) }}</td>
           <td>{{ department.updated_at }}</td>
 
           <td>
             <!-- Update department btn -->
-            <button class="bg-transparent border-0" @click="showingUpdateModal(department.id, department.name)">
+            <button class="bg-transparent border-0" @click="showingUpdateModal(department.id, department.name, department.about)">
               <i class="fas fa-edit fa-lg text-primary"></i>
             </button>
             <!-- Delete department btn -->
@@ -69,6 +71,7 @@ export default {
       departmentUpdate: {
         id: null,
         name: null,
+        about: null
       }
     }
   },
@@ -110,11 +113,12 @@ export default {
           this.departments = this.departments.filter(department => department.id !== department_id);
       });
     },
-    showingUpdateModal(id, name) {
+    showingUpdateModal(id, name, about) {
       this.showingModal();
       this.departmentUpdate = {
         id,
-        name
+        name,
+        about
       }
     },
     departmentUpdated(newDepartment) {
@@ -129,6 +133,7 @@ export default {
       this.departmentUpdate = {
         id: null,
         name: null,
+        about: null
       }
     }
   }
