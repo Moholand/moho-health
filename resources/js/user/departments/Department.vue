@@ -4,6 +4,11 @@
     <div v-else class="department">
       <h3>{{department.name}}</h3>
       <p>{{department.about}}</p>
+      <div class="doctors">
+        <div v-for="(doctor, index) in department.doctors" :key="`doctor-${index}`">
+          {{ doctor.name }}
+        </div>
+      </div>
     </div>
   </div>
 </template>

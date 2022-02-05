@@ -13,8 +13,8 @@ class DepartmentController extends Controller
         return DepartmentResource::collection(Department::all());
     }
 
-    public function show(Department $department)
+    public function show($id)
     {
-        return new DepartmentResource($department);
+        return new DepartmentResource(Department::with('doctors')->findOrFail($id));
     }
 }
