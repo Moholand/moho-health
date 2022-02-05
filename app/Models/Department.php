@@ -16,7 +16,7 @@ class Department extends Model
         return Verta($value)->format('H:i Y-n-j');
     }
 
-    // public function doctors() {
-    //     return $this->hasMany(Doctor::class);
-    // }
+    public function doctors() {
+        return $this->hasMany(User::class, 'department_id');
+    }
 }

@@ -23,7 +23,7 @@
                   <span class="nav-menu">دپارتمان‌ها</span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li v-for="(department, index) in departments" :key="`department-${index}`">
+                  <li v-for="(department, index) in departments" :key="`department-${index}`" class="text-end">
                     <router-link :to="{ name: 'departments.show', params: { department: department.id }}" class="dropdown-item">
                       {{ department.name }}
                     </router-link>
