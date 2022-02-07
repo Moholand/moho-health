@@ -1,14 +1,16 @@
 <template>
   <div>
     <home-slider></home-slider>
+    <department-list></department-list>
   </div>
 </template>
 
 <script>
-import HomeSlider from './home-slider/HomeSlider.vue';
+import HomeSlider from './home-slider/HomeSlider';
+import DepartmentList from './departments/DepartmentList';
 
 export default {
-  components: { HomeSlider },
+  components: { HomeSlider, DepartmentList },
   data() {
     return {
       currentUser: null,

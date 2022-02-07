@@ -49,6 +49,7 @@ export default {
 <style scoped>
   .slider {
     position: relative;
+    height: 475px;
   }
 
   .slider-btn {

@@ -18,7 +18,8 @@ class DepartmentSeeder extends Seeder
             'بخش دندان ‌پزشکی', 
             'بخش مغز و اعصاب',
             'بخش جراحی',
-            'بخش قلب'
+            'بخش قلب',
+            'بخش اطفال'
         ];
 
         foreach($departmentNames as $departmentName) {
