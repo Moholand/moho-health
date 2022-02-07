@@ -2,11 +2,23 @@
   <div class="container">
     <div v-if="loading">Loading ...</div>
     <div v-else class="department">
-      <h3>{{department.name}}</h3>
-      <p>{{department.about}}</p>
+      <div class="information">
+        <h3>{{department.name}}</h3>
+        <p class="description mt-3">{{department.about}}</p>
+      </div>
       <div class="doctors">
-        <div v-for="(doctor, index) in department.doctors" :key="`doctor-${index}`">
-          {{ doctor.name }}
+        <h3 class="mt-5 mb-3">لیست پزشکان</h3>
+        <div class="doctors-list d-flex flex-wrap">
+          <div v-for="(doctor, index) in department.doctors" :key="`doctor-${index}`" class="card doctor-card ms-3 mb-4">
+            <img src="/images/doctors/default.jpg" class="card-img-top" :alt="doctor.name">
+            <div class="card-body">
+              <h5 class="card-title">{{ doctor.name }}</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up the bulk of the card's content.
+              </p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -45,3 +57,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .description {
+    font-size: 18px;
+  }
+
+  .doctor-card {
+    width: 300px;
+  }
+</style>
