@@ -33,6 +33,22 @@
                   </div>
 
                   <div class="form-group d-flex align-items-center mb-5">
+                    <label for="logo" class="col-md-3">لوگوی دپارتمان:</label>
+                    <div class="col-md-9">
+                      <input 
+                        type="text" 
+                        class="form-control"
+                        :class="{'is-invalid': errors && errors.logo}"
+                        placeholder="لطفاً کد لوگوی دپارتمان را وارد نمایید"
+                        v-model="departmentLogo"
+                      >
+                      <div class="invalid-feedback" v-if="errors && errors.logo">
+                        <strong>{{ errors.logo[0] }}</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group d-flex align-items-center mb-5">
                     <label for="about" class="col-md-3">درباره دپارتمان:</label>
                     <div class="col-md-9">
                       <textarea 
@@ -69,7 +85,8 @@ export default {
     return {
       formData: {
         name: null,
-        about: null
+        about: null,
+        logo: null
       },
       errors: null
     }
@@ -98,6 +115,18 @@ export default {
           this.formData.about = val;
         }
       }
+    },
+    departmentLogo: {
+      get() {
+        return this.departmentUpdate.logo ? this.departmentUpdate.logo : this.formData.logo;
+      },
+      set(val) {
+        if(this.departmentUpdate.logo) {
+          this.departmentUpdate.logo = val;
+        } else {
+          this.formData.logo = val;
+        }
+      }
     }
   },
   methods: {
@@ -119,9 +148,7 @@ export default {
         // Append new slider in dom
         this.$emit('departmentAdded', response.data.newDepartment);
 
-        // Clear inputs
-        this.formData.name = '';
-        this.formData.about = '';
+        this.clearInput();
 
         // Hide modal
         this.$emit('showingModal');
@@ -137,6 +164,7 @@ export default {
       
       let data = new FormData();
       data.append('name', this.departmentUpdate.name);
+      data.append('logo', this.departmentUpdate.logo);
       data.append('about', this.departmentUpdate.about);
       data.append('_method', 'PATCH');
 
@@ -153,10 +181,6 @@ export default {
         // Update slider in dom
         this.$emit('departmentUpdated', response.data.department);
 
-        // Clear inputs
-        this.name = '';
-        this.about = '';
-
         // Hide modal
         this.$emit('showingModal');
       })
@@ -165,6 +189,11 @@ export default {
           this.errors = error.response.data.errors;
         }
       });
+    },
+    clearInput() {
+      this.formData.name = '';
+      this.formData.logo = '';
+      this.formData.about = '';
     }
   }
 }

@@ -17,17 +17,17 @@ class AdminDepartmentController extends Controller
 
     public function store(CreateDepartmentRequest $request)
     {
-        $depatment = Department::create( $request->only(['name', 'about']) );
+        $depatment = Department::create( $request->only(['logo', 'name', 'about']) );
 
         return response()->json([
             'newDepartment' => $depatment,
             'message' => 'دپارتمان جدید با موفقیت ایجاد شد'
-        ], 200);
+        ], 201);
     }
 
     public function update(UpdateDepartmentRequest $request, Department $department)
     {
-        $department->update( $request->only(['name', 'about']) );
+        $department->update( $request->only(['logo', 'name', 'about']) );
  
         return response()->json([
             'department' => $department,

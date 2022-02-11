@@ -5349,6 +5349,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5366,6 +5371,7 @@ __webpack_require__.r(__webpack_exports__);
       departmentUpdate: {
         id: null,
         name: null,
+        logo: null,
         about: null
       }
     };
@@ -5412,10 +5418,11 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
-    showingUpdateModal: function showingUpdateModal(id, name, about) {
+    showingUpdateModal: function showingUpdateModal(id, logo, name, about) {
       this.showingModal();
       this.departmentUpdate = {
         id: id,
+        logo: logo,
         name: name,
         about: about
       };
@@ -5430,6 +5437,7 @@ __webpack_require__.r(__webpack_exports__);
     resetDepartmentUpdateData: function resetDepartmentUpdateData() {
       this.departmentUpdate = {
         id: null,
+        logo: null,
         name: null,
         about: null
       };
@@ -5514,6 +5522,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     showModal: Boolean,
@@ -5523,7 +5547,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       formData: {
         name: null,
-        about: null
+        about: null,
+        logo: null
       },
       errors: null
     };
@@ -5552,6 +5577,18 @@ __webpack_require__.r(__webpack_exports__);
           this.formData.about = val;
         }
       }
+    },
+    departmentLogo: {
+      get: function get() {
+        return this.departmentUpdate.logo ? this.departmentUpdate.logo : this.formData.logo;
+      },
+      set: function set(val) {
+        if (this.departmentUpdate.logo) {
+          this.departmentUpdate.logo = val;
+        } else {
+          this.formData.logo = val;
+        }
+      }
     }
   },
   methods: {
@@ -5571,11 +5608,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.$emit('alertShow', response.data.message); // Append new slider in dom
 
 
-        _this.$emit('departmentAdded', response.data.newDepartment); // Clear inputs
+        _this.$emit('departmentAdded', response.data.newDepartment);
 
+        _this.clearInput(); // Hide modal
 
-        _this.formData.name = '';
-        _this.formData.about = ''; // Hide modal
 
         _this.$emit('showingModal');
       })["catch"](function (error) {
@@ -5590,6 +5626,7 @@ __webpack_require__.r(__webpack_exports__);
       this.errors = null;
       var data = new FormData();
       data.append('name', this.departmentUpdate.name);
+      data.append('logo', this.departmentUpdate.logo);
       data.append('about', this.departmentUpdate.about);
       data.append('_method', 'PATCH');
       axios({
@@ -5604,11 +5641,8 @@ __webpack_require__.r(__webpack_exports__);
         _this2.$emit('alertShow', response.data.message); // Update slider in dom
 
 
-        _this2.$emit('departmentUpdated', response.data.department); // Clear inputs
+        _this2.$emit('departmentUpdated', response.data.department); // Hide modal
 
-
-        _this2.name = '';
-        _this2.about = ''; // Hide modal
 
         _this2.$emit('showingModal');
       })["catch"](function (error) {
@@ -5616,6 +5650,11 @@ __webpack_require__.r(__webpack_exports__);
           _this2.errors = error.response.data.errors;
         }
       });
+    },
+    clearInput: function clearInput() {
+      this.formData.name = '';
+      this.formData.logo = '';
+      this.formData.about = '';
     }
   }
 });
@@ -32376,6 +32415,8 @@ var render = function () {
                       _vm._v(_vm._s(++index)),
                     ]),
                     _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(department.logo))]),
+                    _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(department.name))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(department.about.substr(0, 40)))]),
@@ -32391,6 +32432,7 @@ var render = function () {
                             click: function ($event) {
                               return _vm.showingUpdateModal(
                                 department.id,
+                                department.logo,
                                 department.name,
                                 department.about
                               )
@@ -32441,6 +32483,8 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("لوگو")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("نام دپارتمان")]),
         _vm._v(" "),
@@ -32578,6 +32622,59 @@ var render = function () {
                           ? _c("div", { staticClass: "invalid-feedback" }, [
                               _c("strong", [
                                 _vm._v(_vm._s(_vm.errors.name[0])),
+                              ]),
+                            ])
+                          : _vm._e(),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group d-flex align-items-center mb-5",
+                    },
+                    [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-3", attrs: { for: "logo" } },
+                        [_vm._v("لوگوی دپارتمان:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.departmentLogo,
+                              expression: "departmentLogo",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.errors && _vm.errors.logo,
+                          },
+                          attrs: {
+                            type: "text",
+                            placeholder:
+                              "لطفاً کد لوگوی دپارتمان را وارد نمایید",
+                          },
+                          domProps: { value: _vm.departmentLogo },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.departmentLogo = $event.target.value
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _vm.errors && _vm.errors.logo
+                          ? _c("div", { staticClass: "invalid-feedback" }, [
+                              _c("strong", [
+                                _vm._v(_vm._s(_vm.errors.logo[0])),
                               ]),
                             ])
                           : _vm._e(),

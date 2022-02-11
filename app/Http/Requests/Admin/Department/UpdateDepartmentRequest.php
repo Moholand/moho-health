@@ -24,6 +24,7 @@ class UpdateDepartmentRequest extends FormRequest
     public function rules()
     {
         return [
+            'logo' => 'nullable|string',
             'name' => 'required|string|min:2|unique:departments,name,' . $this->department->id, //Ignore the current department
             'about' => 'required|min:2'
         ];

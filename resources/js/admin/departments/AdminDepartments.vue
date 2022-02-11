@@ -22,6 +22,7 @@
       <thead>
         <tr>
           <th scope="col">#</th>
+          <th scope="col">لوگو</th>
           <th scope="col">نام دپارتمان</th>
           <th scope="col">درباره دپارتمان</th>
           <th scope="col">تاریخ ایجاد</th>
@@ -33,13 +34,17 @@
       <tbody v-else>
         <tr v-for="(department, index) in departments" :key="`department-${index}`">
           <th scope="row">{{ ++index }}</th>
+          <td>{{ department.logo }}</td>
           <td>{{ department.name }}</td>
           <td>{{ department.about.substr(0, 40) }}</td>
           <td>{{ department.updated_at }}</td>
 
           <td>
             <!-- Update department btn -->
-            <button class="bg-transparent border-0" @click="showingUpdateModal(department.id, department.name, department.about)">
+            <button 
+              class="bg-transparent border-0" 
+              @click="showingUpdateModal(department.id, department.logo, department.name, department.about)"
+            >
               <i class="fas fa-edit fa-lg text-primary"></i>
             </button>
             <!-- Delete department btn -->
@@ -71,6 +76,7 @@ export default {
       departmentUpdate: {
         id: null,
         name: null,
+        logo: null,
         about: null
       }
     }
@@ -113,10 +119,11 @@ export default {
           this.departments = this.departments.filter(department => department.id !== department_id);
       });
     },
-    showingUpdateModal(id, name, about) {
+    showingUpdateModal(id, logo, name, about) {
       this.showingModal();
       this.departmentUpdate = {
         id,
+        logo,
         name,
         about
       }
@@ -132,6 +139,7 @@ export default {
     resetDepartmentUpdateData() {
       this.departmentUpdate = {
         id: null,
+        logo: null,
         name: null,
         about: null
       }
