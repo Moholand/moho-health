@@ -9,7 +9,7 @@ class Department extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'about'];
+    protected $fillable = ['logo', 'name', 'about'];
 
     public function getUpdatedAtAttribute($value)
     {

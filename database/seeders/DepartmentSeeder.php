@@ -14,7 +14,7 @@ class DepartmentSeeder extends Seeder
     public function run()
     {
         $departmentNames = [
-            'بخش چشم ‌پزشکی', 
+            'name' => 'بخش چشم ‌پزشکی', 
             'بخش دندان ‌پزشکی', 
             'بخش مغز و اعصاب',
             'بخش جراحی',
