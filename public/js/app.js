@@ -32420,7 +32420,9 @@ var render = function () {
                       _vm._v(_vm._s(++index)),
                     ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(department.logo))]),
+                    _c("td", [
+                      _c("i", { staticClass: "fa-lg", class: department.logo }),
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(department.name))]),
                     _vm._v(" "),

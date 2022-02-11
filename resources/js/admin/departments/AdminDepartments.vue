@@ -34,7 +34,7 @@
       <tbody v-else>
         <tr v-for="(department, index) in departments" :key="`department-${index}`">
           <th scope="row">{{ ++index }}</th>
-          <td>{{ department.logo }}</td>
+          <td><i :class="department.logo" class="fa-lg"></i></td>
           <td>{{ department.name }}</td>
           <td>{{ department.about.substr(0, 40) }}</td>
           <td>{{ department.updated_at }}</td>
