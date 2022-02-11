@@ -5651,6 +5651,11 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
+    closeModal: function closeModal() {
+      this.$emit('closeUpdateModal');
+      this.clearInput();
+      this.errors = null;
+    },
     clearInput: function clearInput() {
       this.formData.name = '';
       this.formData.logo = '';
@@ -32536,7 +32541,7 @@ var render = function () {
           if ($event.target !== $event.currentTarget) {
             return null
           }
-          return _vm.$emit("closeUpdateModal")
+          return _vm.closeModal.apply(null, arguments)
         },
       },
     },
@@ -32567,11 +32572,7 @@ var render = function () {
                 _c("button", {
                   staticClass: "btn-close ms-0",
                   attrs: { type: "button" },
-                  on: {
-                    click: function ($event) {
-                      return _vm.$emit("closeUpdateModal")
-                    },
-                  },
+                  on: { click: _vm.closeModal },
                 }),
               ]),
               _vm._v(" "),
@@ -32743,11 +32744,7 @@ var render = function () {
                   {
                     staticClass: "btn btn-secondary",
                     attrs: { type: "button" },
-                    on: {
-                      click: function ($event) {
-                        return _vm.$emit("closeUpdateModal")
-                      },
-                    },
+                    on: { click: _vm.closeModal },
                   },
                   [_vm._v("بازگشت")]
                 ),

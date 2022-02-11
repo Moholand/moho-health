@@ -1,6 +1,6 @@
 <template>
   
-    <div class="create-department-modal" v-show="showModal" @click.self="$emit('closeUpdateModal')">
+    <div class="create-department-modal" v-show="showModal" @click.self="closeModal">
 
       <transition name="modal-box">
         <div class="modal-dialog" v-show="showModal">
@@ -11,7 +11,7 @@
                   <span v-if="departmentUpdate.id">ویرایش دپارتمان</span>
                   <span v-else>ایجاد دپارتمان جدید</span>
                 </h5>
-                <button type="button" class="btn-close ms-0" @click="$emit('closeUpdateModal')"></button>
+                <button type="button" class="btn-close ms-0" @click="closeModal"></button>
               </div>
 
               <div class="modal-body">
@@ -66,7 +66,7 @@
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" @click="$emit('closeUpdateModal')">بازگشت</button>
+                <button type="button" class="btn btn-secondary" @click="closeModal">بازگشت</button>
                 <button type="button" id="submit" class="btn btn-primary" @click.prevent="submitForm">ایجاد اسلاید</button>
               </div>
             </div>
@@ -189,6 +189,11 @@ export default {
           this.errors = error.response.data.errors;
         }
       });
+    },
+    closeModal() {
+      this.$emit('closeUpdateModal');
+      this.clearInput();
+      this.errors = null;
     },
     clearInput() {
       this.formData.name = '';
