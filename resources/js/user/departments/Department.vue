@@ -1,10 +1,13 @@
 <template>
-  <div class="container">
+  <div class="container my-5">
     <div v-if="loading">Loading ...</div>
     <div v-else class="department">
       <div class="information">
-        <h3>{{department.name}}</h3>
-        <p class="description mt-3">{{department.about}}</p>
+        <h2>{{department.name}}</h2>
+        <div class="description d-flex align-items-center">
+          <i :class="[department.logo, 'logo', 'p-5']"></i>
+          <p class="about mt-3 w-50">{{department.about}}</p>
+        </div>
       </div>
       <div class="doctors">
         <h3 class="mt-5 mb-3">لیست پزشکان</h3>
@@ -59,8 +62,13 @@ export default {
 </script>
 
 <style scoped>
-  .description {
+  .about {
     font-size: 18px;
+  }
+  
+  .logo {
+    font-size: 100px;
+    color: #1B9CFC;
   }
 
   .doctor-card {
