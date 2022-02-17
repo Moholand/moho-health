@@ -21,6 +21,19 @@ Vue.component('loading', Loading);
 
 const store = new Vuex.Store(storeObject);
 
+window.axios.interceptors.response.use(
+	response => {
+		return response;
+	},
+	error => {
+		if(error.response.status === 401) {
+			store.dispatch(logout);
+		}
+
+		return Promise.reject(error);
+	}
+);
+
 router.beforeEach(authMiddleware);
 
 const app = new Vue({
@@ -29,5 +42,8 @@ const app = new Vue({
   store,
 	components: {
 		'index': Index,
+	},
+	async beforeCreate() {
+		this.$store.dispatch('loadUser');
 	}
 });

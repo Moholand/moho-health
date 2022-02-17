@@ -13,21 +13,22 @@ export default {
   components: { HomeSlider, DepartmentList },
   data() {
     return {
-      currentUser: null,
-      token: localStorage.getItem('token'),
-      test: false
+      user: null,
+      token: localStorage.getItem('token')
     }
   },
   created() {
     window.axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
 
+    this.$store.dispatch('loadUser');
+
     // Get current user information
-    axios.get('api/user')
-      .then(response => {
-        this.currentUser = response.data;
-        this.$store.commit('setCurrentUser', response.data);
-      })
-      .catch(error => console.log(error));
+    // axios.get('api/user')
+    //   .then(response => {
+    //     this.user = response.data;
+    //     this.$store.commit('setUser', response.data);
+    //   })
+    //   .catch(error => console.log(error));
   }
 }
 </script>

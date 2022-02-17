@@ -33,7 +33,7 @@
           </div>
           
           <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary btn-block" @click.prevent="login">
+            <button type="submit" class="btn btn-primary btn-block" @click.prevent="login" :disabled="loading">
               ورود
             </button>
           </div>
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import { logIn } from "../shared/helpers/auth";
 
 export default {
   data() {
@@ -54,20 +55,30 @@ export default {
         password: null,
         device_name: 'browser'
       },
+      loading: false,
       errors: null,
     }
   },
   methods: {
-    login() {
-      axios.post('api/login', this.formData)
-        .then(response => {
-          localStorage.setItem('token', response.data);
-          this.$router.push({ name: 'home' });
-        }).catch(error => {
-          if(error.response.status === 422) {
-            this.errors = error.response.data.errors
-          }
-        });
+    async login() {
+      this.loading = true;
+      this.errors = null;
+
+      try {
+        await axios.get('/sanctum/csrf-cookie');
+        const response = await axios.post('/api/login', this.formData);
+
+        localStorage.setItem('token', response.data);
+        
+        logIn();
+        this.$router.push({name: 'home'});
+      } catch(error) {
+        if(error.response && error.response.status === 422) {
+          this.errors = error.response.data.errors
+        }
+      }
+      
+      this.loading = false;
     }
   }
 }

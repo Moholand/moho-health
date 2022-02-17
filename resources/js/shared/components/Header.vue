@@ -102,7 +102,7 @@ export default {
       axios.post('api/logout')
         .then(response => {
           localStorage.removeItem('token');
-          this.$store.commit('setCurrentUser', null);
+          this.$store.dispatch('logout', null);
           this.$router.push({ name: 'login' });
         })
         .catch(error => console.log(error));
