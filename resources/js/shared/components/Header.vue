@@ -41,11 +41,11 @@
 
           <ul class="navbar-nav ms-4">
 
-            <div v-if="$store.state.currentUser" class="d-flex">
+            <div v-if="isLoggedIn" class="d-flex">
               <li class="nav-item me-3">
                 <div class="dropdown">
                   <button class="bg-transparent border-0 dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown">
-                    {{ $store.state.currentUser.name }}
+                    {{ $store.state.user.name }}
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="userMenu">
                     <li><router-link class="dropdown-item text-end" :to="{name: 'admin-sliders'}">
@@ -62,7 +62,7 @@
               </li>
             </div>
 
-            <div v-else class="d-flex">
+            <div class="d-flex" v-else>
               <li class="nav-item">
                 <router-link :to="{name: 'login'}">
                   ورود
@@ -84,11 +84,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data() {
     return {
       departments: null,
     }
+  },
+  computed: {
+    ...mapState({
+      isLoggedIn: 'isLoggedIn'
+    }),
   },
   async mounted() {
     try {
@@ -102,10 +109,10 @@ export default {
       axios.post('api/logout')
         .then(response => {
           localStorage.removeItem('token');
-          this.$store.dispatch('logout', null);
+          this.$store.dispatch('logout');
           this.$router.push({ name: 'login' });
         })
-        .catch(error => console.log(error));
+        .catch(error => this.$store.dispatch('logout'));
     }
   }
 }

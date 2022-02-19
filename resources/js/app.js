@@ -10,6 +10,7 @@ import Loading from './shared/components/Loading';
 
 import storeObject from './shared/store/storeObject';
 import authMiddleware from './shared/middleware/authMiddleware';
+import { isLoggedIn } from './shared/helpers/auth';
 
 window.Vue = require('vue').default;
 
@@ -44,6 +45,7 @@ const app = new Vue({
 		'index': Index,
 	},
 	async beforeCreate() {
-		this.$store.dispatch('loadUser');
+		this.$store.commit('setLoggedIn', isLoggedIn());
+		// this.$store.dispatch('loadUser');
 	}
 });
