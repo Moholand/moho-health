@@ -4,6 +4,7 @@ import About from './about/About';
 import AdminSliders from './admin/sliders/AdminSliders';
 import AdminDepartments from './admin/departments/AdminDepartments';
 import Department from './user/departments/Department';
+import DoctorsDetail from './user/doctors/DoctorsDetail';
 import Register from './auth/Register';
 import Login from './auth/Login';
 
@@ -46,6 +47,11 @@ const routes = [
     path: "/departments/:department",
     name: 'departments.show',
     component: Department,
+  },
+  {
+    path: "/doctors/:doctor",
+    name: 'doctors.detail',
+    component: DoctorsDetail,
   },
 ];
 

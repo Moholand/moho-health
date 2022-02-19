@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\User\DoctorController;
 use App\Http\Controllers\User\SliderController;
 use App\Http\Controllers\User\DepartmentController;
 use App\Http\Controllers\Admin\AdminSliderController;
@@ -29,6 +30,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 
 Route::get('/sliders', SliderController::class);
 Route::apiResource('/departments', DepartmentController::class)->only(['index', 'show']);
+Route::apiResource('/doctors', DoctorController::class)->only('show');
 
 Route::group(['prefix'=>'/admin','as'=>'admin.'], function() {
     Route::apiResource('/sliders', AdminSliderController::class)->except(['show']);
