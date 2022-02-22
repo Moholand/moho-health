@@ -18,6 +18,7 @@ export default {
     async loadUser({ commit, dispatch }) {
       if(isLoggedIn()) {
         try {
+          window.axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
           const user = (await axios.get('/api/user')).data;
           commit('setUser', user);
           commit('setLoggedIn', true);

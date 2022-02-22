@@ -46,6 +46,6 @@ const app = new Vue({
 	},
 	async beforeCreate() {
 		this.$store.commit('setLoggedIn', isLoggedIn());
-		// this.$store.dispatch('loadUser');
+		this.$store.dispatch('loadUser');
 	}
 });
