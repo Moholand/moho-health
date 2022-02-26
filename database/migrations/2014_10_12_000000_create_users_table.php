@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Role;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateUsersTable extends Migration
 {
@@ -19,9 +20,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->unsignedBigInteger('role_id')->default(1);
+            $table->unsignedBigInteger('role_id')->default(Role::USER);
+
             $table->unsignedBigInteger('department_id')->nullable();
-            $table->rememberToken();
+            $table->string('expertise')->nullable();
+            $table->text('schedule')->nullable();
+
             $table->timestamps();
         });
     }

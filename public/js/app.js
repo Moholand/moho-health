@@ -6868,11 +6868,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       loading: false,
-      doctor: null
+      doctor: null,
+      days: ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه'],
+      hours: ['8-10', '10-12', '13-15', '15-17', '17-19']
     };
   },
   created: function created() {
@@ -6908,6 +6933,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee, null, [[1, 7]]);
     }))();
+  },
+  methods: {
+    checkForPresense: function checkForPresense(day, hour) {
+      var presense = false;
+      this.doctor.schedule.forEach(function (presenseObj) {
+        if (presenseObj.day === day && presenseObj.hour === hour) {
+          presense = true;
+        }
+      });
+      return presense;
+    }
   }
 });
 
@@ -34877,7 +34913,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container my-5" }, [
-    _c("div", { staticClass: "information" }, [
+    _c("div", { staticClass: "information pb-5" }, [
       _vm.loading
         ? _c("div", [_vm._v("Loading ...")])
         : _c("div", { staticClass: "row" }, [
@@ -34908,6 +34944,61 @@ var render = function () {
                 [_vm._v("\n          رزرو نوبت\n        ")]
               ),
             ]),
+          ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "schedule pt-5" }, [
+      _c("h3", [_vm._v("برنامه حضور پزشک:")]),
+      _vm._v(" "),
+      _vm.loading
+        ? _c("div", [_vm._v("Loading ...")])
+        : _c("table", { staticClass: "table table-striped table-hover mt-4" }, [
+            _c("thead", [
+              _c(
+                "tr",
+                [
+                  _c("th", { attrs: { scope: "col" } }, [_vm._v("روز")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.hours, function (hour, index) {
+                    return _c(
+                      "th",
+                      { key: "hour-" + index, attrs: { scope: "col" } },
+                      [_vm._v("\n            " + _vm._s(hour) + "\n          ")]
+                    )
+                  }),
+                ],
+                2
+              ),
+            ]),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.days, function (day, index) {
+                return _c(
+                  "tr",
+                  { key: "day-" + index },
+                  [
+                    _c("th", { attrs: { scope: "row" } }, [
+                      _vm._v(_vm._s(day)),
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.hours, function (hour, index) {
+                      return _c(
+                        "th",
+                        { key: "hour-" + index, attrs: { scope: "col" } },
+                        [
+                          _vm.checkForPresense(day, hour)
+                            ? _c("span", [_vm._v("حضور دارد")])
+                            : _c("span", [_vm._v("X")]),
+                        ]
+                      )
+                    }),
+                  ],
+                  2
+                )
+              }),
+              0
+            ),
           ]),
     ]),
   ])

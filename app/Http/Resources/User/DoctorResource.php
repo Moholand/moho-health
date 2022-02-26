@@ -17,7 +17,8 @@ class DoctorResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'email' => $this->email
+            'email' => $this->email,
+            'schedule' => json_decode($this->schedule)
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class DepartmentSeeder extends Seeder
@@ -22,6 +23,13 @@ class DepartmentSeeder extends Seeder
             ['name' => 'بخش اطفال', 'logo' => 'fas fa-baby'],
         ];
 
+        $schedule = [
+            ['day' => 'شنبه', 'hour' => '8-10'],
+            ['day' => 'شنبه', 'hour' => '15-17'],
+            ['day' => 'سه‌شنبه', 'hour' => '13-15'],
+            ['day' => 'پنج‌شنبه', 'hour' => '10-12']
+        ];
+
         foreach($departments as $department) {
             $department = \App\Models\Department::factory()->create([
                 'name' => $department['name'],
@@ -30,8 +38,9 @@ class DepartmentSeeder extends Seeder
 
             // For each department create 10 doctors
             \App\Models\User::factory(10)->create([
-                'role_id' => 2,
-                'department_id' => $department->id
+                'role_id' => Role::DOCTOR,
+                'department_id' => $department->id,
+                'schedule' => json_encode($schedule)
             ]);
         }
     }
