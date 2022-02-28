@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Appointment;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -47,5 +48,21 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function appointmentsSet()
+    {
+        return $this->hasMany(Appointment::class, 'patient_id');
+    }
+
+    public function appointmentsAccept()
+    {
+        return $this->hasMany(Appointment::class, 'doctor_id');
+    }
+
+    public function appointments()
+    {
+        // What is this part exactly doing???
+        return $this->appointmentsSet()->union($this->appointmentsAccept()->toBase());
     }
 }
