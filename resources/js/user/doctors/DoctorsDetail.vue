@@ -29,8 +29,7 @@
             <th scope="row">{{ day }}</th>
             <th scope="col" v-for="(hour, index) in hours" :key="`hour-${index}`">
               <span v-if="capacityNum = checkForPresense(day, hour)">
-                <!-- @click.prevent="setAppointment(day, hour)" -->
-                <button class="btn btn-outline-primary" @click.prevent="showConfirm">
+                <button class="btn btn-outline-primary" @click.prevent="prepareShowConfirm(day, hour)">
                   <span>رزرو نوبت - ظرفیت</span>
                   <span> {{ capacityNum }} </span>
                   <span>نفر</span>
@@ -45,9 +44,12 @@
 
     <confirm
       @closeModal="showConfirm"
+      @eventConfirmed="setAppointment"
       :confirmModal="confirmModal" 
       :confirmData="confirmData"
     ></confirm>
+
+    <alert :alertData="alertData"></alert>
 
   </div>
 </template>
@@ -64,7 +66,13 @@ export default {
         title: 'رزرو نوبت',
         body: 'آیا مایل به رزرو نوبت می‌باشید؟',
         buttonText: 'رزرو',
-        buttonClass: 'btn-primary'
+        buttonClass: 'btn-primary',
+        day: null,
+        hour: null
+      },
+      alertData: {
+        show: false,
+        message: null
       },
       doctor: null,
       days: ['شنبه',
@@ -108,13 +116,25 @@ export default {
     showConfirm() {
       this.confirmModal = !this.confirmModal;
     },
-    setAppointment(day, hour) {
+    prepareShowConfirm(day, hour) {
+      this.confirmData.day = day;
+      this.confirmData.hour = hour;
+      this.showConfirm();
+    },
+    setAppointment() {
       const doctor_id = this.doctor.id;
       const patient_id = this.user.id;
+      const day = this.confirmData.day;
+      const hour = this.confirmData.hour;
 
       axios.post('/api/appointments', { doctor_id, patient_id, day, hour })
         .then(({data}) => {
           this.doctor = data.doctor;
+          this.showConfirm();
+          this.alertData = {
+            show: true,
+            message: data.message
+          }
         });
     }
   }

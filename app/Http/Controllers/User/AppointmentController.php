@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Models\User;
 use App\Models\Appointment;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class AppointmentController extends Controller

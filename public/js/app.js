@@ -6531,6 +6531,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     alertData: Object
@@ -6596,7 +6597,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    submitForm: function submitForm() {
+    eventConfirmed: function eventConfirmed() {
       this.$emit('eventConfirmed');
     },
     closeModal: function closeModal() {
@@ -6970,6 +6971,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -6980,7 +6983,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         title: 'رزرو نوبت',
         body: 'آیا مایل به رزرو نوبت می‌باشید؟',
         buttonText: 'رزرو',
-        buttonClass: 'btn-primary'
+        buttonClass: 'btn-primary',
+        day: null,
+        hour: null
+      },
+      alertData: {
+        show: false,
+        message: null
       },
       doctor: null,
       days: ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه'],
@@ -7037,11 +7046,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     showConfirm: function showConfirm() {
       this.confirmModal = !this.confirmModal;
     },
-    setAppointment: function setAppointment(day, hour) {
+    prepareShowConfirm: function prepareShowConfirm(day, hour) {
+      this.confirmData.day = day;
+      this.confirmData.hour = hour;
+      this.showConfirm();
+    },
+    setAppointment: function setAppointment() {
       var _this2 = this;
 
       var doctor_id = this.doctor.id;
       var patient_id = this.user.id;
+      var day = this.confirmData.day;
+      var hour = this.confirmData.hour;
       axios.post('/api/appointments', {
         doctor_id: doctor_id,
         patient_id: patient_id,
@@ -7050,6 +7066,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (_ref) {
         var data = _ref.data;
         _this2.doctor = data.doctor;
+
+        _this2.showConfirm();
+
+        _this2.alertData = {
+          show: true,
+          message: data.message
+        };
       });
     }
   }
@@ -12618,7 +12641,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.custom-alert[data-v-5f3a28df] {\n  position: fixed;\n  top: 10%;\n  right: 5%;\n  background: #55efc4;\n  color: #ffffff;\n  width: 300px;\n  height: 50px;\n  border-radius: 5px;\n  font-weight: bold;\n  padding: 10px;\n}\n.alert-box-enter-active[data-v-5f3a28df], .alert-box-leave-active[data-v-5f3a28df] {\n  transition: 0.5s all ease;\n}\n.alert-box-enter[data-v-5f3a28df], .alert-box-leave-to[data-v-5f3a28df] {\n  transform: translateX(100px);\n  opacity: 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.custom-alert[data-v-5f3a28df] {\n  position: fixed;\n  top: 10%;\n  right: 5%;\n  background: #55efc4;\n  color: #ffffff;\n  width: 350px;\n  height: 80px;\n  border-radius: 5px;\n  font-weight: bold;\n  padding: 10px 25px 10px 10px;\n}\n.custom-alert[data-v-5f3a28df]:after {\n  content: '';\n  position: absolute;\n  width: 10px;\n  height: 100%;\n  right: 0;\n  border: 0 5px 5px 0;\n  background: #55efc4;\n}\n.alert-box-enter-active[data-v-5f3a28df], .alert-box-leave-active[data-v-5f3a28df] {\n  transition: 0.5s all ease;\n}\n.alert-box-enter[data-v-5f3a28df], .alert-box-leave-to[data-v-5f3a28df] {\n  transform: translateX(100px);\n  opacity: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -34623,9 +34646,18 @@ var render = function () {
         staticClass: "custom-alert",
       },
       [
-        _c("div", { staticClass: "row mx-0" }, [
-          _vm._v("\n      " + _vm._s(_vm.alertData.message) + "\n    "),
-        ]),
+        _c(
+          "div",
+          {
+            staticClass:
+              "d-flex justify-content-between align-items-center flex-grow-1",
+          },
+          [
+            _c("span", [_vm._v(_vm._s(_vm.alertData.message))]),
+            _vm._v(" "),
+            _c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")]),
+          ]
+        ),
       ]
     ),
   ])
@@ -34728,7 +34760,7 @@ var render = function () {
                     on: {
                       click: function ($event) {
                         $event.preventDefault()
-                        return _vm.submitForm.apply(null, arguments)
+                        return _vm.eventConfirmed.apply(null, arguments)
                       },
                     },
                   },
@@ -35594,9 +35626,9 @@ var render = function () {
                                         on: {
                                           click: function ($event) {
                                             $event.preventDefault()
-                                            return _vm.showConfirm.apply(
-                                              null,
-                                              arguments
+                                            return _vm.prepareShowConfirm(
+                                              day,
+                                              hour
                                             )
                                           },
                                         },
@@ -35632,8 +35664,10 @@ var render = function () {
       _vm._v(" "),
       _c("confirm", {
         attrs: { confirmModal: _vm.confirmModal, confirmData: _vm.confirmData },
-        on: { closeModal: _vm.showConfirm },
+        on: { closeModal: _vm.showConfirm, eventConfirmed: _vm.setAppointment },
       }),
+      _vm._v(" "),
+      _c("alert", { attrs: { alertData: _vm.alertData } }),
     ],
     1
   )

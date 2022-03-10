@@ -16,7 +16,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" @click="closeModal">بازگشت</button>
-            <button type="button" id="submit" :class="['btn', confirmData.buttonClass]" @click.prevent="submitForm">
+            <button type="button" id="submit" :class="['btn', confirmData.buttonClass]" @click.prevent="eventConfirmed">
               {{ confirmData.buttonText }}
             </button>
           </div>
@@ -36,7 +36,7 @@ export default {
     }
   },
   methods: {
-    submitForm() {
+    eventConfirmed() {
       this.$emit('eventConfirmed');
     },
     closeModal() {
