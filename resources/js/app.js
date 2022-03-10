@@ -5,8 +5,10 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router';
 import router from './routes';
 import Index from './Index';
+
 import Alert from './shared/components/Alert';
 import Loading from './shared/components/Loading';
+import Confirm from './shared/components/Confirm';
 
 import storeObject from './shared/store/storeObject';
 import authMiddleware from './shared/middleware/authMiddleware';
@@ -19,6 +21,7 @@ Vue.use(Vuex)
 
 Vue.component('alert', Alert);
 Vue.component('loading', Loading);
+Vue.component('confirm', Confirm);
 
 const store = new Vuex.Store(storeObject);
 

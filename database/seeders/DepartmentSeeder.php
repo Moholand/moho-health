@@ -24,10 +24,10 @@ class DepartmentSeeder extends Seeder
         ];
 
         $schedule = [
-            ['day' => 'شنبه', 'hour' => '8-10'],
-            ['day' => 'شنبه', 'hour' => '15-17'],
-            ['day' => 'سه‌شنبه', 'hour' => '13-15'],
-            ['day' => 'پنج‌شنبه', 'hour' => '10-12']
+            ['day' => 'شنبه', 'hour' => '8-10', 'capacity' => 5],
+            ['day' => 'شنبه', 'hour' => '15-17', 'capacity' => 5],
+            ['day' => 'سه‌شنبه', 'hour' => '13-15', 'capacity' => 5],
+            ['day' => 'پنج‌شنبه', 'hour' => '10-12', 'capacity' => 5]
         ];
 
         foreach($departments as $department) {

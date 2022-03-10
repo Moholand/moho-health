@@ -1,80 +1,80 @@
 <template>
   
-    <div class="create-department-modal" v-show="showModal" @click.self="closeModal">
+  <div class="create-department-modal" v-show="showModal" @click.self="closeModal">
 
-      <transition name="modal-box">
-        <div class="modal-dialog" v-show="showModal">
-    
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">
-                  <span v-if="departmentUpdate.id">ویرایش دپارتمان</span>
-                  <span v-else>ایجاد دپارتمان جدید</span>
-                </h5>
-                <button type="button" class="btn-close ms-0" @click="closeModal"></button>
-              </div>
-
-              <div class="modal-body">
-                <form>
-                  <div class="form-group d-flex align-items-center mb-5">
-                    <label for="name" class="col-md-3">نام دپارتمان:</label>
-                    <div class="col-md-9">
-                      <input 
-                        type="text" 
-                        class="form-control"
-                        :class="{'is-invalid': errors && errors.name}"
-                        placeholder="لطفاً نام دپارتمان را وارد نمایید"
-                        v-model="departmentName"
-                      >
-                      <div class="invalid-feedback" v-if="errors && errors.name">
-                        <strong>{{ errors.name[0] }}</strong>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="form-group d-flex align-items-center mb-5">
-                    <label for="logo" class="col-md-3">لوگوی دپارتمان:</label>
-                    <div class="col-md-9">
-                      <input 
-                        type="text" 
-                        class="form-control"
-                        :class="{'is-invalid': errors && errors.logo}"
-                        placeholder="لطفاً کد لوگوی دپارتمان را وارد نمایید"
-                        v-model="departmentLogo"
-                      >
-                      <div class="invalid-feedback" v-if="errors && errors.logo">
-                        <strong>{{ errors.logo[0] }}</strong>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="form-group d-flex align-items-center mb-5">
-                    <label for="about" class="col-md-3">درباره دپارتمان:</label>
-                    <div class="col-md-9">
-                      <textarea 
-                        class="form-control"
-                        :class="{'is-invalid': errors && errors.about}"
-                        placeholder="لطفاً فیلد درباره دپارتمان را وارد کامل نمایید"
-                        rows="5"
-                        v-model="departmentAbout"
-                      ></textarea>
-                      <div class="invalid-feedback" v-if="errors && errors.about">
-                        <strong>{{ errors.about[0] }}</strong>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" @click="closeModal">بازگشت</button>
-                <button type="button" id="submit" class="btn btn-primary" @click.prevent="submitForm">ایجاد اسلاید</button>
-              </div>
+    <transition name="modal-box">
+      <div class="modal-dialog" v-show="showModal">
+  
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">
+                <span v-if="departmentUpdate.id">ویرایش دپارتمان</span>
+                <span v-else>ایجاد دپارتمان جدید</span>
+              </h5>
+              <button type="button" class="btn-close ms-0" @click="closeModal"></button>
             </div>
-        
-        </div>
-      </transition>
 
-    </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group d-flex align-items-center mb-5">
+                  <label for="name" class="col-md-3">نام دپارتمان:</label>
+                  <div class="col-md-9">
+                    <input 
+                      type="text" 
+                      class="form-control"
+                      :class="{'is-invalid': errors && errors.name}"
+                      placeholder="لطفاً نام دپارتمان را وارد نمایید"
+                      v-model="departmentName"
+                    >
+                    <div class="invalid-feedback" v-if="errors && errors.name">
+                      <strong>{{ errors.name[0] }}</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group d-flex align-items-center mb-5">
+                  <label for="logo" class="col-md-3">لوگوی دپارتمان:</label>
+                  <div class="col-md-9">
+                    <input 
+                      type="text" 
+                      class="form-control"
+                      :class="{'is-invalid': errors && errors.logo}"
+                      placeholder="لطفاً کد لوگوی دپارتمان را وارد نمایید"
+                      v-model="departmentLogo"
+                    >
+                    <div class="invalid-feedback" v-if="errors && errors.logo">
+                      <strong>{{ errors.logo[0] }}</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group d-flex align-items-center mb-5">
+                  <label for="about" class="col-md-3">درباره دپارتمان:</label>
+                  <div class="col-md-9">
+                    <textarea 
+                      class="form-control"
+                      :class="{'is-invalid': errors && errors.about}"
+                      placeholder="لطفاً فیلد درباره دپارتمان را وارد کامل نمایید"
+                      rows="5"
+                      v-model="departmentAbout"
+                    ></textarea>
+                    <div class="invalid-feedback" v-if="errors && errors.about">
+                      <strong>{{ errors.about[0] }}</strong>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" @click="closeModal">بازگشت</button>
+              <button type="button" id="submit" class="btn btn-primary" @click.prevent="submitForm">ایجاد اسلاید</button>
+            </div>
+          </div>
+      
+      </div>
+    </transition>
+
+  </div>
 
 </template>
 

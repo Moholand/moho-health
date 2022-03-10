@@ -9,9 +9,6 @@
         <div class="col-md-8">
           <p class="doctor-name">{{ doctor.name }}</p>
           <p class="doctor-specialty">فوق تخصص اطفال و فلوشیپ</p>
-          <a href="#" class="btn btn-outline-primary">
-            رزرو نوبت
-          </a>
         </div>
       </div>
     </div>
@@ -31,21 +28,44 @@
           <tr v-for="(day, index) in days" :key="`day-${index}`">
             <th scope="row">{{ day }}</th>
             <th scope="col" v-for="(hour, index) in hours" :key="`hour-${index}`">
-              <span v-if="checkForPresense(day, hour)">حضور دارد</span>
+              <span v-if="capacityNum = checkForPresense(day, hour)">
+                <!-- @click.prevent="setAppointment(day, hour)" -->
+                <button class="btn btn-outline-primary" @click.prevent="showConfirm">
+                  <span>رزرو نوبت - ظرفیت</span>
+                  <span> {{ capacityNum }} </span>
+                  <span>نفر</span>
+                </button>
+              </span>
               <span v-else>X</span>
             </th>
           </tr>
         </tbody>
       </table>
     </div>
+
+    <confirm
+      @closeModal="showConfirm"
+      :confirmModal="confirmModal" 
+      :confirmData="confirmData"
+    ></confirm>
+
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data() {
     return {
       loading: false,
+      confirmModal: false,
+      confirmData: {
+        title: 'رزرو نوبت',
+        body: 'آیا مایل به رزرو نوبت می‌باشید؟',
+        buttonText: 'رزرو',
+        buttonClass: 'btn-primary'
+      },
       doctor: null,
       days: ['شنبه',
               'یکشنبه',
@@ -56,6 +76,9 @@ export default {
               'جمعه'],
       hours: ['8-10', '10-12', '13-15', '15-17', '17-19'],
     }
+  },
+  computed: {
+    ...mapState(['user'])
   },
   async created() {
     this.loading = true;
@@ -71,14 +94,28 @@ export default {
   methods: {
     checkForPresense(day, hour) {
       let presense = false;
+      let capacity = null;
 
       this.doctor.schedule.forEach(presenseObj => {
         if(presenseObj.day === day && presenseObj.hour === hour) {
           presense = true;
+          capacity = presenseObj.capacity;
         }
       });
 
-      return presense;
+      return presense === true ? capacity : false;
+    }, 
+    showConfirm() {
+      this.confirmModal = !this.confirmModal;
+    },
+    setAppointment(day, hour) {
+      const doctor_id = this.doctor.id;
+      const patient_id = this.user.id;
+
+      axios.post('/api/appointments', { doctor_id, patient_id, day, hour })
+        .then(({data}) => {
+          this.doctor = data.doctor;
+        });
     }
   }
 }
