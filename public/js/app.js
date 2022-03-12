@@ -6973,6 +6973,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -7038,7 +7046,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.doctor.schedule.forEach(function (presenseObj) {
         if (presenseObj.day === day && presenseObj.hour === hour) {
           presense = true;
-          capacity = presenseObj.capacity;
+          capacity = presenseObj.capacity === 0 ? 'empty' : presenseObj.capacity;
         }
       });
       return presense === true ? capacity : false;
@@ -12641,7 +12649,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.custom-alert[data-v-5f3a28df] {\n  position: fixed;\n  top: 10%;\n  right: 5%;\n  background: #55efc4;\n  color: #ffffff;\n  width: 350px;\n  height: 80px;\n  border-radius: 5px;\n  font-weight: bold;\n  padding: 10px 25px 10px 10px;\n}\n.custom-alert[data-v-5f3a28df]:after {\n  content: '';\n  position: absolute;\n  width: 10px;\n  height: 100%;\n  right: 0;\n  border: 0 5px 5px 0;\n  background: #55efc4;\n}\n.alert-box-enter-active[data-v-5f3a28df], .alert-box-leave-active[data-v-5f3a28df] {\n  transition: 0.5s all ease;\n}\n.alert-box-enter[data-v-5f3a28df], .alert-box-leave-to[data-v-5f3a28df] {\n  transform: translateX(100px);\n  opacity: 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.custom-alert[data-v-5f3a28df] {\n  position: fixed;\n  top: 10%;\n  right: 5%;\n  background: #e2fff7;\n  color: #57606f;\n  width: 320px;\n  height: 60px;\n  border-radius: 5px;\n  font-weight: bold;\n  padding: 10px 25px 10px 10px;\n}\n.custom-alert[data-v-5f3a28df]:after {\n  content: '';\n  position: absolute;\n  width: 10px;\n  height: 100%;\n  right: 0;\n  border-radius: 0 5px 5px 0;\n  background: #55efc4;\n}\n.close-btn[data-v-5f3a28df] {\n  font-size: 20px;\n  margin-left: 10px;\n  cursor: pointer;\n}\n.alert-box-enter-active[data-v-5f3a28df], .alert-box-leave-active[data-v-5f3a28df] {\n  transition: 0.5s all ease;\n}\n.alert-box-enter[data-v-5f3a28df], .alert-box-leave-to[data-v-5f3a28df] {\n  transform: translateX(100px);\n  opacity: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -34632,34 +34640,33 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("transition", { attrs: { name: "alert-box" } }, [
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.alertData.show,
-            expression: "alertData.show",
-          },
-        ],
-        staticClass: "custom-alert",
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass:
-              "d-flex justify-content-between align-items-center flex-grow-1",
-          },
-          [
-            _c("span", [_vm._v(_vm._s(_vm.alertData.message))]),
-            _vm._v(" "),
-            _c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")]),
-          ]
-        ),
-      ]
-    ),
+    _vm.alertData.show
+      ? _c("div", { staticClass: "custom-alert d-flex align-items-center" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "d-flex justify-content-between align-items-center flex-grow-1",
+            },
+            [
+              _c("span", [_vm._v(_vm._s(_vm.alertData.message))]),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass: "close-btn",
+                  on: {
+                    click: function ($event) {
+                      _vm.alertData.show = false
+                    },
+                  },
+                },
+                [_vm._v("×")]
+              ),
+            ]
+          ),
+        ])
+      : _vm._e(),
   ])
 }
 var staticRenderFns = []
@@ -35619,34 +35626,55 @@ var render = function () {
                                 hour
                               ))
                                 ? _c("span", [
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-outline-primary",
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.prepareShowConfirm(
-                                              day,
-                                              hour
-                                            )
+                                    _vm.capacityNum === "empty"
+                                      ? _c(
+                                          "button",
+                                          {
+                                            staticClass: "btn btn-secondary",
+                                            attrs: { disabled: "" },
+                                            on: {
+                                              click: function ($event) {
+                                                $event.preventDefault()
+                                                return _vm.prepareShowConfirm(
+                                                  day,
+                                                  hour
+                                                )
+                                              },
+                                            },
                                           },
-                                        },
-                                      },
-                                      [
-                                        _c("span", [
-                                          _vm._v("رزرو نوبت - ظرفیت"),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("span", [
-                                          _vm._v(
-                                            " " + _vm._s(_vm.capacityNum) + " "
-                                          ),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("span", [_vm._v("نفر")]),
-                                      ]
-                                    ),
+                                          [_c("span", [_vm._v("تکمیل ظرفیت")])]
+                                        )
+                                      : _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn btn-outline-primary",
+                                            on: {
+                                              click: function ($event) {
+                                                $event.preventDefault()
+                                                return _vm.prepareShowConfirm(
+                                                  day,
+                                                  hour
+                                                )
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _c("span", [
+                                              _vm._v("رزرو نوبت - ظرفیت"),
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("span", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(_vm.capacityNum) +
+                                                  " "
+                                              ),
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("span", [_vm._v("نفر")]),
+                                          ]
+                                        ),
                                   ])
                                 : _c("span", [_vm._v("X")]),
                             ]

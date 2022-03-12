@@ -29,7 +29,15 @@
             <th scope="row">{{ day }}</th>
             <th scope="col" v-for="(hour, index) in hours" :key="`hour-${index}`">
               <span v-if="capacityNum = checkForPresense(day, hour)">
-                <button class="btn btn-outline-primary" @click.prevent="prepareShowConfirm(day, hour)">
+                <button 
+                  v-if="capacityNum === 'empty'" 
+                  class="btn btn-secondary" 
+                  @click.prevent="prepareShowConfirm(day, hour)"
+                  disabled
+                >
+                  <span>تکمیل ظرفیت</span>
+                </button>
+                <button v-else class="btn btn-outline-primary" @click.prevent="prepareShowConfirm(day, hour)">
                   <span>رزرو نوبت - ظرفیت</span>
                   <span> {{ capacityNum }} </span>
                   <span>نفر</span>
@@ -107,7 +115,7 @@ export default {
       this.doctor.schedule.forEach(presenseObj => {
         if(presenseObj.day === day && presenseObj.hour === hour) {
           presense = true;
-          capacity = presenseObj.capacity;
+          capacity = presenseObj.capacity === 0 ? 'empty' : presenseObj.capacity;
         }
       });
 
