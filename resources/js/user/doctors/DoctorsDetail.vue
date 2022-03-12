@@ -19,7 +19,7 @@
         <thead>
           <tr>
             <th scope="col">روز</th>
-            <th scope="col" v-for="(hour, index) in hours" :key="`hour-${index}`">
+            <th scope="col" v-for="(hour, index) in hours" :key="`hour-${index}`" class="text-center">
               {{ hour }}
             </th>
           </tr>
@@ -27,7 +27,7 @@
         <tbody>
           <tr v-for="(day, index) in days" :key="`day-${index}`">
             <th scope="row">{{ day }}</th>
-            <th scope="col" v-for="(hour, index) in hours" :key="`hour-${index}`">
+            <th scope="col" v-for="(hour, index) in hours" :key="`hour-${index}`" class="text-center">
               <span v-if="capacityNum = checkForPresense(day, hour)">
                 <button 
                   v-if="capacityNum === 'empty'" 
@@ -37,7 +37,12 @@
                 >
                   <span>تکمیل ظرفیت</span>
                 </button>
-                <button v-else class="btn btn-outline-primary" @click.prevent="prepareShowConfirm(day, hour)">
+                <button 
+                  v-else 
+                  class="btn btn-outline-primary" 
+                  @click.prevent="prepareShowConfirm(day, hour)"
+                  :disabled="!isLoggedIn"
+                >
                   <span>رزرو نوبت - ظرفیت</span>
                   <span> {{ capacityNum }} </span>
                   <span>نفر</span>
@@ -94,7 +99,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['user'])
+    ...mapState(['user', 'isLoggedIn'])
   },
   async created() {
     this.loading = true;

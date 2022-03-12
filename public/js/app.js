@@ -6981,6 +6981,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -7004,7 +7009,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       hours: ['8-10', '10-12', '13-15', '15-17', '17-19']
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(['user'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(['user', 'isLoggedIn'])),
   created: function created() {
     var _this = this;
 
@@ -35592,7 +35597,11 @@ var render = function () {
                       _vm._l(_vm.hours, function (hour, index) {
                         return _c(
                           "th",
-                          { key: "hour-" + index, attrs: { scope: "col" } },
+                          {
+                            key: "hour-" + index,
+                            staticClass: "text-center",
+                            attrs: { scope: "col" },
+                          },
                           [
                             _vm._v(
                               "\n            " + _vm._s(hour) + "\n          "
@@ -35619,7 +35628,11 @@ var render = function () {
                         _vm._l(_vm.hours, function (hour, index) {
                           return _c(
                             "th",
-                            { key: "hour-" + index, attrs: { scope: "col" } },
+                            {
+                              key: "hour-" + index,
+                              staticClass: "text-center",
+                              attrs: { scope: "col" },
+                            },
                             [
                               (_vm.capacityNum = _vm.checkForPresense(
                                 day,
@@ -35649,6 +35662,9 @@ var render = function () {
                                           {
                                             staticClass:
                                               "btn btn-outline-primary",
+                                            attrs: {
+                                              disabled: !_vm.isLoggedIn,
+                                            },
                                             on: {
                                               click: function ($event) {
                                                 $event.preventDefault()
