@@ -1,10 +1,19 @@
 <template>
   <div class="header">
     <nav class="navbar navbar-expand-lg navbar-light flex-column">
-      <div class="container-fluid">
-        <router-link :to="{ name: 'home'}" class="navbar-brand">MOHOLAND</router-link>
+      <div class="container py-2">
+        <router-link :to="{ name: 'home'}" class="navbar-brand">
+          <i class="fas fa-heartbeat"></i>
+          <span>MOHOLAND</span>
+        </router-link>
+        <div class="search-wrapper">
+          <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto d-flex align-items-center">
+            <input type="search" class="form-control" placeholder="جستجو...">
+            <i class="fas fa-search text-secondary"></i>
+          </form>
+        </div>
       </div>
-      <div class="container-fluid">
+      <div class="container py-2">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -44,8 +53,12 @@
             <div v-if="isLoggedIn" class="d-flex">
               <li class="nav-item me-3">
                 <div class="dropdown">
-                  <button class="bg-transparent border-0 dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown">
-                    {{ $store.state.user.name }}
+                  <button 
+                    class="bg-transparent nav-link border-0 dropdown-toggle" 
+                    type="button" 
+                    id="userMenu" data-bs-toggle="dropdown"
+                  >
+                    {{ user.name }}
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="userMenu">
                     <li><router-link class="dropdown-item text-end" :to="{name: 'admin-sliders'}">
@@ -58,18 +71,18 @@
                 </div>
               </li>
               <li class="nav-item me-3">
-                <button class="bg-transparent border-0" @click.prevent="logout">خروج</button>
+                <button class="bg-transparent nav-link border-0" @click.prevent="logout">خروج</button>
               </li>
             </div>
 
             <div class="d-flex" v-else>
               <li class="nav-item">
-                <router-link :to="{name: 'login'}">
+                <router-link :to="{name: 'login'}" class="nav-link">
                   ورود
                 </router-link>
               </li>
               <li class="nav-item me-3">
-                <router-link :to="{name: 'register'}">
+                <router-link :to="{name: 'register'}" class="nav-link">
                   نام‌نویسی
                 </router-link>
               </li>
@@ -93,9 +106,7 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      isLoggedIn: 'isLoggedIn'
-    }),
+    ...mapState(['isLoggedIn', 'user']),
   },
   async mounted() {
     try {
@@ -120,18 +131,35 @@ export default {
 
 <style scoped> 
   .header {
-    border-bottom: 1px solid #25CCF7;
+    background-image: linear-gradient(to top, #54a0ff15 , #54a0ff05)
   }
 
   .navbar-brand {
-    color: #1B9CFC;
+    color: #ffffff;
+    background: #8acaf9;
+    padding: 5px 15px;
+    border-radius: 20px;
   }
 
   .navbar-brand:hover, .navbar-brand:focus {
-    color: #25CCF7;
+    color: #ffffff;
+    background: #6cbbf5;
   }
 
   .nav-menu {
     font-size: 15px;
+  }
+
+  .search-wrapper form {
+    position: relative;
+  }
+
+  .search-wrapper input {
+    border-radius: 10px;
+  }
+
+  .search-wrapper i {
+    position: absolute;
+    left: 15px;
   }
 </style>

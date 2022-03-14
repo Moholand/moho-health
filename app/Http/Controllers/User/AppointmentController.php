@@ -13,7 +13,7 @@ class AppointmentController extends Controller
     {
         $doctor = $service->updateSchedule($request->doctor_id, $request->day, $request->hour);
 
-        Appointment::create( $request->only(['doctor_id', 'patient_id']) );
+        Appointment::create($request->validated());
 
         return response()->json([
             'message' => 'رزرو نوبت با موفقیت انجام شد',

@@ -6719,6 +6719,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -6726,9 +6739,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       departments: null
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
-    isLoggedIn: 'isLoggedIn'
-  })),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(['isLoggedIn', 'user'])),
   mounted: function mounted() {
     var _this = this;
 
@@ -12726,7 +12737,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.header[data-v-e3d22dcc] {\n  border-bottom: 1px solid #25CCF7;\n}\n.navbar-brand[data-v-e3d22dcc] {\n  color: #1B9CFC;\n}\n.navbar-brand[data-v-e3d22dcc]:hover, .navbar-brand[data-v-e3d22dcc]:focus {\n  color: #25CCF7;\n}\n.nav-menu[data-v-e3d22dcc] {\n  font-size: 15px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.header[data-v-e3d22dcc] {\n  background-image: linear-gradient(to top, #54a0ff15 , #54a0ff05)\n}\n.navbar-brand[data-v-e3d22dcc] {\n  color: #ffffff;\n  background: #8acaf9;\n  padding: 5px 15px;\n  border-radius: 20px;\n}\n.navbar-brand[data-v-e3d22dcc]:hover, .navbar-brand[data-v-e3d22dcc]:focus {\n  color: #ffffff;\n  background: #6cbbf5;\n}\n.nav-menu[data-v-e3d22dcc] {\n  font-size: 15px;\n}\n.search-wrapper form[data-v-e3d22dcc] {\n  position: relative;\n}\n.search-wrapper input[data-v-e3d22dcc] {\n  border-radius: 10px;\n}\n.search-wrapper i[data-v-e3d22dcc] {\n  position: absolute;\n  left: 15px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -35078,19 +35089,25 @@ var render = function () {
       [
         _c(
           "div",
-          { staticClass: "container-fluid" },
+          { staticClass: "container py-2" },
           [
             _c(
               "router-link",
               { staticClass: "navbar-brand", attrs: { to: { name: "home" } } },
-              [_vm._v("MOHOLAND")]
+              [
+                _c("i", { staticClass: "fas fa-heartbeat" }),
+                _vm._v(" "),
+                _c("span", [_vm._v("MOHOLAND")]),
+              ]
             ),
+            _vm._v(" "),
+            _vm._m(0),
           ],
           1
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "container-fluid" }, [
-          _vm._m(0),
+        _c("div", { staticClass: "container py-2" }, [
+          _vm._m(1),
           _vm._v(" "),
           _c(
             "div",
@@ -35133,7 +35150,7 @@ var render = function () {
                     { staticClass: "nav-item d-flex align-items-center me-5" },
                     [
                       _c("div", { staticClass: "dropdown" }, [
-                        _vm._m(1),
+                        _vm._m(2),
                         _vm._v(" "),
                         _c(
                           "ul",
@@ -35210,7 +35227,7 @@ var render = function () {
                             "button",
                             {
                               staticClass:
-                                "bg-transparent border-0 dropdown-toggle",
+                                "bg-transparent nav-link border-0 dropdown-toggle",
                               attrs: {
                                 type: "button",
                                 id: "userMenu",
@@ -35220,7 +35237,7 @@ var render = function () {
                             [
                               _vm._v(
                                 "\n                  " +
-                                  _vm._s(_vm.$store.state.user.name) +
+                                  _vm._s(_vm.user.name) +
                                   "\n                "
                               ),
                             ]
@@ -35281,7 +35298,7 @@ var render = function () {
                         _c(
                           "button",
                           {
-                            staticClass: "bg-transparent border-0",
+                            staticClass: "bg-transparent nav-link border-0",
                             on: {
                               click: function ($event) {
                                 $event.preventDefault()
@@ -35300,7 +35317,10 @@ var render = function () {
                         [
                           _c(
                             "router-link",
-                            { attrs: { to: { name: "login" } } },
+                            {
+                              staticClass: "nav-link",
+                              attrs: { to: { name: "login" } },
+                            },
                             [_vm._v("\n                ورود\n              ")]
                           ),
                         ],
@@ -35313,7 +35333,10 @@ var render = function () {
                         [
                           _c(
                             "router-link",
-                            { attrs: { to: { name: "register" } } },
+                            {
+                              staticClass: "nav-link",
+                              attrs: { to: { name: "register" } },
+                            },
                             [
                               _vm._v(
                                 "\n                نام‌نویسی\n              "
@@ -35333,6 +35356,28 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "search-wrapper" }, [
+      _c(
+        "form",
+        {
+          staticClass:
+            "col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto d-flex align-items-center",
+        },
+        [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "search", placeholder: "جستجو..." },
+          }),
+          _vm._v(" "),
+          _c("i", { staticClass: "fas fa-search text-secondary" }),
+        ]
+      ),
+    ])
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
