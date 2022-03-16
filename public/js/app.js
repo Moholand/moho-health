@@ -6762,6 +6762,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -7270,15 +7279,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _home_Home__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home/Home */ "./resources/js/home/Home.vue");
 /* harmony import */ var _about_About__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./about/About */ "./resources/js/about/About.vue");
-/* harmony import */ var _admin_sliders_AdminSliders__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./admin/sliders/AdminSliders */ "./resources/js/admin/sliders/AdminSliders.vue");
-/* harmony import */ var _admin_departments_AdminDepartments__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./admin/departments/AdminDepartments */ "./resources/js/admin/departments/AdminDepartments.vue");
-/* harmony import */ var _user_departments_Department__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./user/departments/Department */ "./resources/js/user/departments/Department.vue");
-/* harmony import */ var _user_doctors_DoctorsDetail__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./user/doctors/DoctorsDetail */ "./resources/js/user/doctors/DoctorsDetail.vue");
-/* harmony import */ var _auth_Register__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./auth/Register */ "./resources/js/auth/Register.vue");
-/* harmony import */ var _auth_Login__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./auth/Login */ "./resources/js/auth/Login.vue");
+/* harmony import */ var _admin_doctors_Doctors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./admin/doctors/Doctors */ "./resources/js/admin/doctors/Doctors.vue");
+/* harmony import */ var _admin_sliders_AdminSliders__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./admin/sliders/AdminSliders */ "./resources/js/admin/sliders/AdminSliders.vue");
+/* harmony import */ var _admin_departments_AdminDepartments__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./admin/departments/AdminDepartments */ "./resources/js/admin/departments/AdminDepartments.vue");
+/* harmony import */ var _user_departments_Department__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./user/departments/Department */ "./resources/js/user/departments/Department.vue");
+/* harmony import */ var _user_doctors_DoctorsDetail__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./user/doctors/DoctorsDetail */ "./resources/js/user/doctors/DoctorsDetail.vue");
+/* harmony import */ var _auth_Register__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./auth/Register */ "./resources/js/auth/Register.vue");
+/* harmony import */ var _auth_Login__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./auth/Login */ "./resources/js/auth/Login.vue");
+
 
 
 
@@ -7295,14 +7306,14 @@ var routes = [{
 }, {
   path: "/register",
   name: 'register',
-  component: _auth_Register__WEBPACK_IMPORTED_MODULE_6__["default"],
+  component: _auth_Register__WEBPACK_IMPORTED_MODULE_7__["default"],
   meta: {
     guest: true
   }
 }, {
   path: "/login",
   name: 'login',
-  component: _auth_Login__WEBPACK_IMPORTED_MODULE_7__["default"],
+  component: _auth_Login__WEBPACK_IMPORTED_MODULE_8__["default"],
   meta: {
     guest: true
   }
@@ -7311,29 +7322,36 @@ var routes = [{
   name: 'about',
   component: _about_About__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
+  path: "/admin/doctors",
+  name: 'admin.doctors',
+  component: _admin_doctors_Doctors__WEBPACK_IMPORTED_MODULE_2__["default"],
+  meta: {
+    requiresAuth: true
+  }
+}, {
   path: "/admin/sliders",
   name: 'admin-sliders',
-  component: _admin_sliders_AdminSliders__WEBPACK_IMPORTED_MODULE_2__["default"],
+  component: _admin_sliders_AdminSliders__WEBPACK_IMPORTED_MODULE_3__["default"],
   meta: {
     requiresAuth: true
   }
 }, {
   path: "/admin/departments",
   name: 'admin-departments',
-  component: _admin_departments_AdminDepartments__WEBPACK_IMPORTED_MODULE_3__["default"],
+  component: _admin_departments_AdminDepartments__WEBPACK_IMPORTED_MODULE_4__["default"],
   meta: {
     requiresAuth: true
   }
 }, {
   path: "/departments/:department",
   name: 'departments.show',
-  component: _user_departments_Department__WEBPACK_IMPORTED_MODULE_4__["default"]
+  component: _user_departments_Department__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   path: "/doctors/:doctor",
   name: 'doctors.detail',
-  component: _user_doctors_DoctorsDetail__WEBPACK_IMPORTED_MODULE_5__["default"]
+  component: _user_doctors_DoctorsDetail__WEBPACK_IMPORTED_MODULE_6__["default"]
 }];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_8__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]({
   routes: routes,
   // short for 'routes: routes'
   mode: 'history'
@@ -31932,6 +31950,43 @@ component.options.__file = "resources/js/admin/departments/DepartmentCreate.vue"
 
 /***/ }),
 
+/***/ "./resources/js/admin/doctors/Doctors.vue":
+/*!************************************************!*\
+  !*** ./resources/js/admin/doctors/Doctors.vue ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Doctors_vue_vue_type_template_id_3de5d72a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Doctors.vue?vue&type=template&id=3de5d72a& */ "./resources/js/admin/doctors/Doctors.vue?vue&type=template&id=3de5d72a&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _Doctors_vue_vue_type_template_id_3de5d72a___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Doctors_vue_vue_type_template_id_3de5d72a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/admin/doctors/Doctors.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/admin/sliders/AdminSliders.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/admin/sliders/AdminSliders.vue ***!
@@ -33028,6 +33083,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/admin/doctors/Doctors.vue?vue&type=template&id=3de5d72a&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/admin/doctors/Doctors.vue?vue&type=template&id=3de5d72a& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Doctors_vue_vue_type_template_id_3de5d72a___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Doctors_vue_vue_type_template_id_3de5d72a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Doctors_vue_vue_type_template_id_3de5d72a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Doctors.vue?vue&type=template&id=3de5d72a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/doctors/Doctors.vue?vue&type=template&id=3de5d72a&");
+
+
+/***/ }),
+
 /***/ "./resources/js/admin/sliders/AdminSliders.vue?vue&type=template&id=63ff8f04&":
 /*!************************************************************************************!*\
   !*** ./resources/js/admin/sliders/AdminSliders.vue?vue&type=template&id=63ff8f04& ***!
@@ -33772,6 +33844,86 @@ var render = function () {
   )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/doctors/Doctors.vue?vue&type=template&id=3de5d72a&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/doctors/Doctors.vue?vue&type=template&id=3de5d72a& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container py-5" }, [
+      _c("h3", [_vm._v("لیست پزشکان")]),
+      _vm._v(" "),
+      _c("table", { staticClass: "table table-hover mt-4" }, [
+        _c("thead", [
+          _c("tr", [
+            _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [
+              _vm._v("نام و نام خوانوادگی"),
+            ]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [_vm._v("ایمیل")]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [_vm._v("دپارتمان")]),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("tbody", [
+          _c("tr", [
+            _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Mark")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Otto")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("@mdo")]),
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("th", { attrs: { scope: "row" } }, [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Jacob")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Thornton")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("@fat")]),
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("th", { attrs: { scope: "row" } }, [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", { attrs: { colspan: "2" } }, [_vm._v("Larry the Bird")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("@twitter")]),
+          ]),
+        ]),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -35369,12 +35521,13 @@ var render = function () {
                                   _c(
                                     "router-link",
                                     {
-                                      staticClass: "dropdown-item text-end",
-                                      attrs: { to: { name: "admin-sliders" } },
+                                      staticClass:
+                                        "dropdown-item text-end nav-link",
+                                      attrs: { to: { name: "admin.doctors" } },
                                     },
                                     [
                                       _vm._v(
-                                        "\n                    تنظیمات پیمایشگر\n                  "
+                                        "\n                      لیست پزشکان\n                    "
                                       ),
                                     ]
                                   ),
@@ -35388,14 +35541,35 @@ var render = function () {
                                   _c(
                                     "router-link",
                                     {
-                                      staticClass: "dropdown-item text-end",
+                                      staticClass:
+                                        "dropdown-item text-end nav-link",
+                                      attrs: { to: { name: "admin-sliders" } },
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                      تنظیمات پیمایشگر\n                    "
+                                      ),
+                                    ]
+                                  ),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass:
+                                        "dropdown-item text-end nav-link",
                                       attrs: {
                                         to: { name: "admin-departments" },
                                       },
                                     },
                                     [
                                       _vm._v(
-                                        "\n                    تنظیمات دپارتمان‌ها\n                  "
+                                        "\n                      تنظیمات دپارتمان‌ها\n                    "
                                       ),
                                     ]
                                   ),

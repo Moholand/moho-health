@@ -61,12 +61,21 @@
                     {{ user.name }}
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="userMenu">
-                    <li><router-link class="dropdown-item text-end" :to="{name: 'admin-sliders'}">
-                      تنظیمات پیمایشگر
-                    </router-link></li>
-                    <li><router-link class="dropdown-item text-end" :to="{name: 'admin-departments'}">
-                      تنظیمات دپارتمان‌ها
-                    </router-link></li>
+                    <li>
+                      <router-link class="dropdown-item text-end nav-link" :to="{name: 'admin.doctors'}">
+                        لیست پزشکان
+                      </router-link>
+                    </li>
+                    <li>
+                      <router-link class="dropdown-item text-end nav-link" :to="{name: 'admin-sliders'}">
+                        تنظیمات پیمایشگر
+                      </router-link>
+                    </li>
+                    <li>
+                      <router-link class="dropdown-item text-end nav-link" :to="{name: 'admin-departments'}">
+                        تنظیمات دپارتمان‌ها
+                      </router-link>
+                    </li>
                   </ul>
                 </div>
               </li>

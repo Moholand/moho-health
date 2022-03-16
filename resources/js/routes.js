@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router';
 import Home from './home/Home';
 import About from './about/About';
+import Doctors from './admin/doctors/Doctors';
 import AdminSliders from './admin/sliders/AdminSliders';
 import AdminDepartments from './admin/departments/AdminDepartments';
 import Department from './user/departments/Department';
@@ -30,6 +31,12 @@ const routes = [
     path: "/about-us",
     name: 'about',
     component: About,
+  },
+  {
+    path: "/admin/doctors",
+    name: 'admin.doctors',
+    component: Doctors,
+    meta: { requiresAuth: true }
   },
   {
     path: "/admin/sliders",
