@@ -45,7 +45,7 @@
               {{ errors.password[0] }}
             </div>
           </div>
-          <div class="mb-5"> 
+          <div class="mb-4"> 
             <label for="password_confirmation" class="form-label fw-bold">تأیید رمز عبور</label>
             <input 
               type="password" 
@@ -54,6 +54,34 @@
               placeholder="لطفاً رمز عبور خود را وارد نمایید..."
               v-model="formData.password_confirmation"
             />
+          </div>
+
+          <div class="mb-5">
+            <div class="form-check mb-2">
+              <input 
+                class="form-check-input float-end ms-2 my-1" 
+                type="radio" name="role" id="user"
+                v-model="formData.role"
+                :value="'user'"
+              >
+              <label class="form-check-label" for="patient">
+                نام نویسی به عنوان کاربر عادی
+              </label>
+            </div>
+            <div class="form-check">
+              <input 
+                class="form-check-input float-end ms-2 my-1" 
+                type="radio" name="role" id="doctor"
+                v-model="formData.role"
+                :value="'doctor'"
+              >
+              <label class="form-check-label" for="doctor">
+                نام نویسی به عنوان پزشک
+              </label>
+              <div v-if="errors && errors.role" class="text-danger">
+                {{ errors.role[0] }}
+              </div>
+            </div>
           </div>
           
           <div class="d-grid gap-2">
@@ -77,7 +105,8 @@ export default {
         name: null,
         email: null,
         password: null,
-        password_confirmation: null
+        password_confirmation: null,
+        role: "user"
       },
       errors: null,
       submitting: false
@@ -94,7 +123,8 @@ export default {
             name: null,
             email: null,
             password: null,
-            password_confirmation: null
+            password_confirmation: null,
+            role: null
           };
 
           this.errors = null;

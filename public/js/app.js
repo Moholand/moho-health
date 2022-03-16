@@ -6234,6 +6234,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -6241,7 +6269,8 @@ __webpack_require__.r(__webpack_exports__);
         name: null,
         email: null,
         password: null,
-        password_confirmation: null
+        password_confirmation: null,
+        role: "user"
       },
       errors: null,
       submitting: false
@@ -6258,7 +6287,8 @@ __webpack_require__.r(__webpack_exports__);
           name: null,
           email: null,
           password: null,
-          password_confirmation: null
+          password_confirmation: null,
+          role: null
         };
         _this.errors = null;
 
@@ -12737,7 +12767,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.header[data-v-e3d22dcc] {\n  background-image: linear-gradient(to top, #54a0ff15 , #54a0ff05)\n}\n.navbar-brand[data-v-e3d22dcc] {\n  color: #ffffff;\n  background: #8acaf9;\n  padding: 5px 15px;\n  border-radius: 20px;\n}\n.navbar-brand[data-v-e3d22dcc]:hover, .navbar-brand[data-v-e3d22dcc]:focus {\n  color: #ffffff;\n  background: #6cbbf5;\n}\n.nav-menu[data-v-e3d22dcc] {\n  font-size: 15px;\n}\n.search-wrapper form[data-v-e3d22dcc] {\n  position: relative;\n}\n.search-wrapper input[data-v-e3d22dcc] {\n  border-radius: 10px;\n}\n.search-wrapper i[data-v-e3d22dcc] {\n  position: absolute;\n  left: 15px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.header[data-v-e3d22dcc] {\n  background-image: linear-gradient(to top, #54a0ff15 , #54a0ff05)\n}\n.navbar-brand[data-v-e3d22dcc] {\n  color: #41464b;\n  background: #e2f3ff;\n  padding: 5px 15px;\n  border-radius: 20px;\n}\n.navbar-brand[data-v-e3d22dcc]:hover, .navbar-brand[data-v-e3d22dcc]:focus {\n  color: #ffffff;\n  background: #6cbbf5;\n}\n.nav-menu[data-v-e3d22dcc] {\n  font-size: 15px;\n}\n.search-wrapper form[data-v-e3d22dcc] {\n  position: relative;\n}\n.search-wrapper input[data-v-e3d22dcc] {\n  border-radius: 10px;\n}\n.search-wrapper i[data-v-e3d22dcc] {\n  position: absolute;\n  left: 15px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -34360,7 +34390,7 @@ var render = function () {
                 : _vm._e(),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "mb-5" }, [
+            _c("div", { staticClass: "mb-4" }, [
               _c(
                 "label",
                 {
@@ -34399,6 +34429,89 @@ var render = function () {
                   },
                 },
               }),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "mb-5" }, [
+              _c("div", { staticClass: "form-check mb-2" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.formData.role,
+                      expression: "formData.role",
+                    },
+                  ],
+                  staticClass: "form-check-input float-end ms-2 my-1",
+                  attrs: { type: "radio", name: "role", id: "user" },
+                  domProps: {
+                    value: "user",
+                    checked: _vm._q(_vm.formData.role, "user"),
+                  },
+                  on: {
+                    change: function ($event) {
+                      return _vm.$set(_vm.formData, "role", "user")
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "patient" },
+                  },
+                  [
+                    _vm._v(
+                      "\n              نام نویسی به عنوان کاربر عادی\n            "
+                    ),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-check" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.formData.role,
+                      expression: "formData.role",
+                    },
+                  ],
+                  staticClass: "form-check-input float-end ms-2 my-1",
+                  attrs: { type: "radio", name: "role", id: "doctor" },
+                  domProps: {
+                    value: "doctor",
+                    checked: _vm._q(_vm.formData.role, "doctor"),
+                  },
+                  on: {
+                    change: function ($event) {
+                      return _vm.$set(_vm.formData, "role", "doctor")
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  { staticClass: "form-check-label", attrs: { for: "doctor" } },
+                  [
+                    _vm._v(
+                      "\n              نام نویسی به عنوان پزشک\n            "
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.role
+                  ? _c("div", { staticClass: "text-danger" }, [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.errors.role[0]) +
+                          "\n            "
+                      ),
+                    ])
+                  : _vm._e(),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "d-grid gap-2" }, [
@@ -35095,7 +35208,7 @@ var render = function () {
               "router-link",
               { staticClass: "navbar-brand", attrs: { to: { name: "home" } } },
               [
-                _c("i", { staticClass: "fas fa-heartbeat" }),
+                _c("i", { staticClass: "fas fa-heartbeat text-primary" }),
                 _vm._v(" "),
                 _c("span", [_vm._v("MOHOLAND")]),
               ]

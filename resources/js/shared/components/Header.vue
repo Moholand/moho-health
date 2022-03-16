@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-light flex-column">
       <div class="container py-2">
         <router-link :to="{ name: 'home'}" class="navbar-brand">
-          <i class="fas fa-heartbeat"></i>
+          <i class="fas fa-heartbeat text-primary"></i>
           <span>MOHOLAND</span>
         </router-link>
         <div class="search-wrapper">
@@ -135,8 +135,8 @@ export default {
   }
 
   .navbar-brand {
-    color: #ffffff;
-    background: #8acaf9;
+    color: #41464b;
+    background: #e2f3ff;
     padding: 5px 15px;
     border-radius: 20px;
   }
