@@ -32,3 +32,25 @@
     </table>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      loading: false,
+      doctors: null
+    }
+  },
+  async created() {
+    this.loading = true;
+
+    try {
+      this.doctors = (await axios.get('/api/admin/doctors')).data.data;
+    } catch(error) {
+      throw error;
+    }
+
+    this.loading = false;
+  }
+}
+</script>

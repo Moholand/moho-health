@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Department;
 use App\Models\Appointment;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -48,6 +49,11 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
     }
 
     public function appointmentsSet()

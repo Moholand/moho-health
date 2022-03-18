@@ -7,6 +7,7 @@ use App\Http\Controllers\User\DoctorController;
 use App\Http\Controllers\User\SliderController;
 use App\Http\Controllers\User\DepartmentController;
 use App\Http\Controllers\User\AppointmentController;
+use App\Http\Controllers\Admin\AdminDoctorController;
 use App\Http\Controllers\Admin\AdminSliderController;
 use App\Http\Controllers\Admin\AdminDepartmentController;
 
@@ -34,7 +35,8 @@ Route::apiResource('/departments', DepartmentController::class)->only(['index', 
 Route::apiResource('/doctors', DoctorController::class)->only('show');
 Route::apiResource('/appointments', AppointmentController::class)->only('store');
 
-Route::group(['prefix'=>'/admin','as'=>'admin.'], function() {
+Route::group(['prefix' => '/admin', 'as' => 'admin.'], function() {
     Route::apiResource('/sliders', AdminSliderController::class)->except(['show']);
     Route::apiResource('/departments', AdminDepartmentController::class)->except(['show']);
+    Route::apiResource('/doctors', AdminDoctorController::class)->only(['index']);
 });
