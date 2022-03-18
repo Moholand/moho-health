@@ -8,25 +8,23 @@
           <th scope="col">نام و نام خوانوادگی</th>
           <th scope="col">ایمیل</th>
           <th scope="col">دپارتمان</th>
+          <th scope="col">تخصص</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
+      <loading v-if="loading"></loading>
+      <tbody v-else>
+        <tr v-for="(doctor, index) in doctors" :key="`doctor-${index}`">
+          <th scope="row">{{ index + 1 }}</th>
+          <td>{{ doctor.name }}</td>
+          <td>{{ doctor.email }}</td>
+          <td>
+            <span v-if="doctor.department">{{ doctor.department.name }}</span>
+            <span v-else>-</span>
+          </td>
+          <td>
+            <span v-if="doctor.expertise">{{ doctor.expertise }}</span>
+            <span v-else>-</span>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -34,7 +32,9 @@
 </template>
 
 <script>
+import Loading from '../../shared/components/Loading.vue';
 export default {
+  components: { Loading },
   data() {
     return {
       loading: false,

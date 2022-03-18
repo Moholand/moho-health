@@ -13,7 +13,7 @@ class AdminDoctorController extends Controller
     public function index()
     {
         return AdminDoctorResource::collection(
-            User::where('role_id', Role::DOCTOR)->with('department')->get()
+            User::where('role_id', Role::DOCTOR)->with('department')->paginate(20)->withQueryString()
         );
     }
 }
