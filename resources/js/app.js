@@ -1,6 +1,6 @@
 require('./bootstrap');
 
-import Vue from 'vue';
+import Vue, { createApp } from 'vue';
 import Vuex from 'vuex'
 import VueRouter from 'vue-router';
 import router from './routes';
@@ -10,9 +10,8 @@ import Alert from './shared/components/Alert';
 import Loading from './shared/components/Loading';
 import Confirm from './shared/components/Confirm';
 
-import storeObject from './shared/store/storeObject';
+import store from './shared/store';
 import authMiddleware from './shared/middleware/authMiddleware';
-import { isLoggedIn } from './shared/helpers/auth';
 
 window.Vue = require('vue').default;
 
@@ -23,7 +22,7 @@ Vue.component('alert', Alert);
 Vue.component('loading', Loading);
 Vue.component('confirm', Confirm);
 
-const store = new Vuex.Store(storeObject);
+// const store = new Vuex.Store(storeObject);
 
 window.axios.interceptors.response.use(
 	response => {
@@ -40,15 +39,20 @@ window.axios.interceptors.response.use(
 
 router.beforeEach(authMiddleware);
 
-const app = new Vue({
-	el: '#app',
-	router,
-  store,
-	components: {
-		'index': Index,
-	},
-	async beforeCreate() {
-		this.$store.commit('setLoggedIn', isLoggedIn());
-		this.$store.dispatch('loadUser');
-	}
-});
+// const app = new Vue({
+// 	el: '#app',
+// 	router,
+//   store,
+// 	components: {
+// 		'index': Index,
+// 	},
+// 	async beforeCreate() {
+// 		this.$store.commit('setLoggedIn', isLoggedIn());
+// 		this.$store.dispatch('loadUser');
+// 	}
+// });
+
+createApp(Index)
+	.use(store)
+	.use(router)
+	.mount('#app');

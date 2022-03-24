@@ -15,9 +15,14 @@
 <script>
 import Header from './shared/components/Header';
 import Footer from './shared/components/Footer';
+import { isLoggedIn } from './shared/helpers/auth';
 
 export default {
-  components: { Header, Footer }
+  components: { Header, Footer },
+  async beforeCreate() {
+		this.$store.commit('setLoggedIn', isLoggedIn());
+		this.$store.dispatch('loadUser');
+	}
 }
 </script>
 
