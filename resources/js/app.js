@@ -2,7 +2,7 @@ require('./bootstrap');
 
 import Vue, { createApp } from 'vue';
 import Vuex from 'vuex'
-import VueRouter from 'vue-router';
+// import VueRouter from 'vue-router';
 import router from './routes';
 import Index from './Index';
 
@@ -15,8 +15,7 @@ import authMiddleware from './shared/middleware/authMiddleware';
 
 window.Vue = require('vue').default;
 
-Vue.use(VueRouter);
-Vue.use(Vuex)
+// Vue.use(Vuex)
 
 Vue.component('alert', Alert);
 Vue.component('loading', Loading);
@@ -38,19 +37,6 @@ window.axios.interceptors.response.use(
 );
 
 router.beforeEach(authMiddleware);
-
-// const app = new Vue({
-// 	el: '#app',
-// 	router,
-//   store,
-// 	components: {
-// 		'index': Index,
-// 	},
-// 	async beforeCreate() {
-// 		this.$store.commit('setLoggedIn', isLoggedIn());
-// 		this.$store.dispatch('loadUser');
-// 	}
-// });
 
 createApp(Index)
 	.use(store)

@@ -1,4 +1,5 @@
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
+
 import Home from './home/Home';
 import About from './about/About';
 import Doctors from './admin/doctors/Doctors';
@@ -62,9 +63,9 @@ const routes = [
   },
 ];
 
-const router = new VueRouter({
+const router = new createRouter({
+  history: createWebHistory(),
   routes, // short for 'routes: routes'
-  mode: 'history',
 });
 
 export default router;
