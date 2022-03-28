@@ -24203,91 +24203,58 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       loading: false,
-      doctors: null,
-      links: null
+      doctorsData: null
     };
   },
   created: function created() {
-    var _this = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var doctorsData;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _this.loading = true;
-              _context.prev = 1;
-              _context.next = 4;
-              return axios.get('/api/admin/doctors');
-
-            case 4:
-              doctorsData = _context.sent.data;
-              _this.doctors = doctorsData.data;
-              _this.links = doctorsData.meta.links;
-              _context.next = 12;
-              break;
-
-            case 9:
-              _context.prev = 9;
-              _context.t0 = _context["catch"](1);
-              throw _context.t0;
-
-            case 12:
-              _this.loading = false;
-
-            case 13:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[1, 9]]);
-    }))();
+    this.getForPage();
   },
   methods: {
-    getForPage: function getForPage(link) {
-      var _this2 = this;
+    getForPage: function getForPage() {
+      var _arguments = arguments,
+          _this = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var doctorsData;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var link;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context.prev = _context.next) {
               case 0:
+                link = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : {};
+                link.url = link && link.url ? link.url : '/api/admin/doctors';
+
                 if (!(!link.url || link.active)) {
-                  _context2.next = 2;
+                  _context.next = 4;
                   break;
                 }
 
-                return _context2.abrupt("return");
+                return _context.abrupt("return");
 
-              case 2:
-                _this2.loading = true;
-                _context2.prev = 3;
-                _context2.next = 6;
+              case 4:
+                _this.loading = true;
+                _context.prev = 5;
+                _context.next = 8;
                 return axios.get(link.url);
 
-              case 6:
-                doctorsData = _context2.sent.data;
-                _this2.doctors = doctorsData.data;
-                _this2.links = doctorsData.meta.links;
-                _context2.next = 14;
+              case 8:
+                _this.doctorsData = _context.sent.data;
+                _context.next = 14;
                 break;
 
               case 11:
-                _context2.prev = 11;
-                _context2.t0 = _context2["catch"](3);
-                throw _context2.t0;
+                _context.prev = 11;
+                _context.t0 = _context["catch"](5);
+                throw _context.t0;
 
               case 14:
-                _this2.loading = false;
+                _this.loading = false;
 
               case 15:
               case "end":
-                return _context2.stop();
+                return _context.stop();
             }
           }
-        }, _callee2, null, [[3, 11]]);
+        }, _callee, null, [[5, 11]]);
       }))();
     }
   }
@@ -25640,7 +25607,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, $data.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_loading, {
     key: 0
-  })) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.doctors, function (doctor, index) {
+  })) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.doctorsData.data, function (doctor, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: "doctor-".concat(index)
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(index + 1), 1
@@ -25657,7 +25624,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), 128
   /* KEYED_FRAGMENT */
   ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
-    links: $data.links,
+    links: $data.doctorsData.meta.links,
     onGetForPage: $options.getForPage
   }, null, 8
   /* PROPS */

@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(doctor, index) in doctors" :key="`doctor-${index}`">
+          <tr v-for="(doctor, index) in doctorsData.data" :key="`doctor-${index}`">
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ doctor.name }}</td>
             <td>{{ doctor.email }}</td>
@@ -31,7 +31,7 @@
         </tbody>
       </table>
 
-      <Pagination :links="links" @getForPage="getForPage"/>
+      <Pagination :links="doctorsData.meta.links" @getForPage="getForPage"/>
     </div>
     
   </div>
@@ -46,25 +46,16 @@ export default {
   data() {
     return {
       loading: false,
-      doctors: null,
-      links: null
+      doctorsData: null
     }
   },
-  async created() {
-    this.loading = true;
-
-    try {
-      let doctorsData = (await axios.get('/api/admin/doctors')).data;
-      this.doctors = doctorsData.data;
-      this.links = doctorsData.meta.links;
-    } catch(error) {
-      throw error;
-    }
-
-    this.loading = false;
+  created() {
+    this.getForPage();
   },
   methods: {
-    async getForPage(link) {
+    async getForPage(link = {}) {
+      link.url = link && link.url ? link.url : '/api/admin/doctors';
+
       if(!link.url || link.active) {
         return;
       }
@@ -72,9 +63,7 @@ export default {
       this.loading = true;
 
       try {
-        let doctorsData = (await axios.get(link.url)).data;
-        this.doctors = doctorsData.data;
-        this.links = doctorsData.meta.links;
+        this.doctorsData = (await axios.get(link.url)).data;
       } catch(error) {
         throw error;
       }
