@@ -31,28 +31,7 @@
         </tbody>
       </table>
 
-      <div class="d-flex justify-content-center mt-4">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li 
-                class="nav-item" 
-                v-for="(link, index) in links" 
-                :key="`link-${index}`"
-                :disabled="!link.url"
-              >
-                <a 
-                  class="nav-link active" 
-                  href="#" 
-                  @click="getForPage($event, link)"
-                  :class="[link.active ? 'bg-warning' : '',]"
-                  v-html="link.label"
-                ></a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
+      <Pagination :links="links" @getForPage="getForPage"/>
     </div>
     
   </div>
@@ -60,9 +39,10 @@
 
 <script>
 import Loading from '../../shared/components/Loading.vue';
+import Pagination from '../../shared/components/Pagination.vue';
 
 export default {
-  components: { Loading },
+  components: { Loading, Pagination },
   data() {
     return {
       loading: false,
@@ -84,9 +64,7 @@ export default {
     this.loading = false;
   },
   methods: {
-    async getForPage(event, link) {
-      event.preventDefault();
-      
+    async getForPage(link) {
       if(!link.url || link.active) {
         return;
       }
