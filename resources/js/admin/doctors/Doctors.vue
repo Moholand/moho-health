@@ -31,7 +31,7 @@
               <span v-else>-</span>
             </td>
             <td class="px-4 text-primary">
-              <i class="fas fa-clipboard-list fa-lg schedule-icon"></i>
+              <i class="fas fa-clipboard-list fa-lg schedule-icon" @click="seeSchedule(doctor.schedule)"></i>
             </td>
           </tr>
         </tbody>
@@ -41,18 +41,25 @@
     </div>
     
   </div>
+
+  <Schedule :scheduleData="scheduleData" @closeModal="closeSchedule" />
 </template>
 
 <script>
-import Loading from '../../shared/components/Loading.vue';
-import Pagination from '../../shared/components/Pagination.vue';
+import Loading from '../../shared/components/Loading';
+import Pagination from '../../shared/components/Pagination';
+import Schedule from './Schedule';
 
 export default {
-  components: { Loading, Pagination },
+  components: { Loading, Pagination, Schedule },
   data() {
     return {
       loading: false,
-      doctorsData: null
+      doctorsData: null,
+      scheduleData: {
+        show: false,
+        data: null
+      }
     }
   },
   created() {
@@ -75,6 +82,17 @@ export default {
       }
 
       this.loading = false;
+    },
+    seeSchedule(data) {
+      this.scheduleData.data = data;
+      this.showSchedule();
+    },
+    closeSchedule() {
+      this.scheduleData.data = null;
+      this.showSchedule()
+    },
+    showSchedule() {
+      this.scheduleData.show = !this.scheduleData.show;
     }
   }
 }

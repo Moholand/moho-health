@@ -21,7 +21,7 @@ class AdminDoctorResource extends JsonResource
             'email' => $this->email,
             'department_id' => $this->department_id,
             'expertise' => $this->expertise,
-            'schedule' => $this->schedule,
+            'schedule' => json_decode($this->schedule),
             'updated_at' => $this->updated_at,
             'department' => new AdminDepartmentResource($this->department)
         ];
