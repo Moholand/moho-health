@@ -12,11 +12,14 @@
             <th scope="col">ایمیل</th>
             <th scope="col">دپارتمان</th>
             <th scope="col">تخصص</th>
+            <th scope="col">برنامه حضور</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(doctor, index) in doctorsData.data" :key="`doctor-${index}`">
-            <th scope="row">{{ index + 1 }}</th>
+            <th scope="row">
+              {{ ((doctorsData.meta.current_page - 1) * doctorsData.meta.per_page) + (index + 1) }}
+            </th>
             <td>{{ doctor.name }}</td>
             <td>{{ doctor.email }}</td>
             <td>
@@ -26,6 +29,9 @@
             <td>
               <span v-if="doctor.expertise">{{ doctor.expertise }}</span>
               <span v-else>-</span>
+            </td>
+            <td class="px-4 text-primary">
+              <i class="fas fa-clipboard-list fa-lg schedule-icon"></i>
             </td>
           </tr>
         </tbody>
@@ -73,3 +79,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .schedule-icon {
+    cursor: pointer;
+  }
+</style>
