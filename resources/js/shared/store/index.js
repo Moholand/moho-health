@@ -5,7 +5,17 @@ import axios from "axios";
 const store = createStore({
   state: {
     isLoggedIn: false,
-    user: {}
+    user: {},
+    days: [
+      'شنبه',
+      'یکشنبه',
+      'دوشنبه',
+      'سه‌شنبه',
+      'چهارشنبه',
+      'پنج‌شنبه',
+      'جمعه'
+    ],
+    hours: ['8-10', '10-12', '13-15', '15-17', '17-19']
   },
   mutations: {
     setUser(state, payload) {

@@ -8,15 +8,48 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">
-                <span>برنامه حضور پزشک</span>
+                <span>برنامه حضور</span> <span>{{ scheduleData.name }}</span>
               </h5>
               <button type="button" class="btn-close ms-0" @click="closeModal"></button>
             </div>
 
             <div class="modal-body">
-              <div v-for="(schedule, index) in scheduleData.data" :key="`schedule-${index}`">
-                {{ schedule.day }}
-              </div>
+              <table class="table table-striped table-hover mt-4" v-if="scheduleList">
+                <thead>
+                  <tr>
+                    <th scope="col">روز</th>
+                    <th scope="col" v-for="(hour, index) in hours" :key="`hour-${index}`" class="text-center">
+                      {{ hour }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(day, index) in days" :key="`day-${index}`">
+                    <td scope="row">{{ day }}</td>
+                    <td scope="col" v-for="(hour, index) in hours" :key="`hour-${index}`" class="text-center">
+                      <span v-if="capacityNum = checkForPresense(day, hour)">
+                        <button 
+                          v-if="capacityNum === 'empty'" 
+                          class="btn btn-secondary" 
+                          disabled
+                        >
+                          <span>تکمیل ظرفیت</span>
+                        </button>
+                        <button 
+                          v-else 
+                          class="btn btn-outline-primary" 
+                          :disabled="!isLoggedIn"
+                        >
+                          <span>رزرو نوبت - ظرفیت</span>
+                          <span> {{ capacityNum }} </span>
+                          <span>نفر</span>
+                        </button>
+                      </span>
+                      <span v-else>X</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" @click="closeModal">بازگشت</button>
@@ -32,17 +65,38 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   props: { scheduleData: Object },
   data() {
     return {
-      //
+      scheduleList: null
     }
   },
+  updated() {
+    this.scheduleList = this.scheduleData.data;
+  },
+  computed: {
+    ...mapState(['isLoggedIn', 'days', 'hours'])
+  },
   methods: {
+    checkForPresense(day, hour) {
+      let presense = false;
+      let capacity = null;
+
+      this.scheduleList.forEach(presenseObj => {
+        if(presenseObj.day === day && presenseObj.hour === hour) {
+          presense = true;
+          capacity = presenseObj.capacity === 0 ? 'empty' : presenseObj.capacity;
+        }
+      });
+
+      return presense === true ? capacity : false;
+    }, 
     closeModal() {
       this.$emit('closeModal');
-    },
+    }
   }
 }
 </script>
@@ -63,6 +117,7 @@ export default {
 
   .modal-dialog {
     z-index: 1050;
+    max-width: 80%;
   }
 
   .modal-box-enter-active, .modal-box-leave-active {

@@ -87,19 +87,11 @@ export default {
         show: false,
         message: null
       },
-      doctor: null,
-      days: ['شنبه',
-              'یکشنبه',
-              'دوشنبه',
-              'سه‌شنبه',
-              'چهارشنبه',
-              'پنج‌شنبه',
-              'جمعه'],
-      hours: ['8-10', '10-12', '13-15', '15-17', '17-19'],
+      doctor: null
     }
   },
   computed: {
-    ...mapState(['user', 'isLoggedIn'])
+    ...mapState(['user', 'isLoggedIn', 'days', 'hours'])
   },
   async created() {
     this.loading = true;

@@ -31,7 +31,7 @@
               <span v-else>-</span>
             </td>
             <td class="px-4 text-primary">
-              <i class="fas fa-clipboard-list fa-lg schedule-icon" @click="seeSchedule(doctor.schedule)"></i>
+              <i class="fas fa-clipboard-list fa-lg schedule-icon" @click="seeSchedule(doctor.schedule, doctor.name)"></i>
             </td>
           </tr>
         </tbody>
@@ -58,7 +58,8 @@ export default {
       doctorsData: null,
       scheduleData: {
         show: false,
-        data: null
+        data: null,
+        name: null
       }
     }
   },
@@ -83,12 +84,14 @@ export default {
 
       this.loading = false;
     },
-    seeSchedule(data) {
+    seeSchedule(data, name) {
       this.scheduleData.data = data;
+      this.scheduleData.name = name;
       this.showSchedule();
     },
     closeSchedule() {
       this.scheduleData.data = null;
+      this.scheduleData.name = null;
       this.showSchedule()
     },
     showSchedule() {
